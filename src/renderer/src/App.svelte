@@ -1,95 +1,113 @@
 <script>
-  import imagePath from './assets/PreachItBoard.webp';
+  // let zoomLevel = 1;
+  let position = { x: 0, y: 0 }
+  let isPanning = false
+  let lastMousePosition = null
 
-  // function handleClick(index) {
-  //   if (!board[index] && !winner) {
-  //     board[index] = currentPlayer;
-  //     if (checkWinner()) {
-  //       winner = currentPlayer;
-  //     } else {
-  //       currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-  //     }
-  //   }
-  // }
+  // Functions to zoom in and out
+  let scale = 1 // Initial scale (100%)
 
- 
+  // Function to handle zooming in and out
+  function zoom(event) {
+    event.preventDefault()
 
+    // Change the scale based on the scroll direction
+    if (event.deltaY < 0) {
+      // Scrolling up - zoom in
+      scale += 0.1
+    } else {
+      // Scrolling down - zoom out
+      scale -= 0.1
+      if (scale < 0.1) scale = 0.1 // Prevent zooming out too far
+    }
+  }
+
+  function resetZoom() {
+    scale = 1
+    position = { x: 0, y: 0 }
+  }
+
+  // Event listener for key presses
+  window.addEventListener('mousedown', (event) => {
+    if (event.button === 2) {
+      isPanning = true
+    }
+  })
+
+  window.addEventListener('mouseup', (event) => {
+    if (event.button === 2) {
+      isPanning = false
+    }
+  })
+
+  // Event listener for mouse movements
+  window.addEventListener('mousemove', (event) => {
+    if (isPanning && lastMousePosition) {
+      const deltaX = event.clientX - lastMousePosition.clientX
+      const deltaY = event.clientY - lastMousePosition.clientY
+      position.x += deltaX
+      position.y += deltaY
+    }
+    lastMousePosition = event
+  })
+
+  // Event listener for mouse up
+  window.addEventListener('mouseup', () => {
+    lastMousePosition = null
+  })
 </script>
 
-<main>
+<div class="image-container" on:wheel={zoom}> 
+    <!-- REMINDER I'll need to wrap all the images in this. -->
+  <!-- Image with zoom control and movement via inline styles -->
+  <img
+    src="src/assets/PreachItBoard.webp"
+    alt=""
+    style="position: absolute; transform: scale({scale}) translate({position.x}px, {position.y}px); transition: transform 0.3s ease;"
+  />
 
-  <div>
-    <img src={imagePath} alt="Board" />
+  <!-- Zoom Control Buttons -->
+  <div class="controls">
+    <label>Player 1: XP: Tracts:</label>
+    <label>Player 1: XP: Tracts:</label>
+
+    <!-- <button on:click={zoomIn}>Zoom In</button>
+      <button on:click={zoomOut}>Zoom Out</button> -->
+    <button on:click={resetZoom}>Center Board</button>
+  </div>
 </div>
-  <!-- <h1>{winner ? `${winner} wins!` : `Current Player: ${currentPlayer}`}</h1> -->
- 
- 
-  <!-- <div class="grid">
-    {#each board as cell, index}
-      <button class="cell" on:click={() => handleClick(index)} aria-label={`Cell ${index} - ${cell || 'empty'}`}>
-        {cell}
-      </button>
-    {/each}
-  </div> -->
-  <!-- <button on:click={resetGame}>Reset</button> -->
-</main>
 
 <style>
-  /* main {
-    text-align: center;
-    margin-top: 50px;
-  } */
-  /* .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-gap: 10px;
+  /* Centering the container */
+  .image-container {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
   }
-  .cell {
-    width: 100px;
-    height: 100px;
-    background-color: #eee;
-    font-size: 2rem;
-    cursor: pointer;
-    border: none;
-    outline: none;
-  } */
-  /* button {
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-  } */
 
+  /* Styling the image */
   img {
-        max-width: 100%;
-        height: auto;
-    }
+    transition: transform 0.3s ease;
+    /* This will allow smooth scaling */
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  /* Zoom control buttons */
+  .controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
 </style>
-
-
-
-<!-- <script>
-  import Versions from './components/Versions.svelte'
-  import electronLogo from './assets/electron.svg'
-
-  const ipcHandle = () => window.electron.ipcRenderer.send('ping')
-</script>
-
-<img alt="logo" class="logo" src={electronLogo} />
-<div class="creator">Powered by electron-vite</div>
-<div class="text">
-  Build an Electron app with
-  <span class="svelte">Svelte</span>
-</div>
-<p class="tip">Please try pressing <code>F12</code> to open the devTool</p>
-<div class="actions">
-  <div class="action">
-    <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">Documentation</a>
-  </div>
-  <div class="action">
-     svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions a11y-missing-attribute
-    <a target="_blank" rel="noreferrer" on:click={ipcHandle}>Send IPC</a>
-  </div>
-</div>
-<Versions /> -->
