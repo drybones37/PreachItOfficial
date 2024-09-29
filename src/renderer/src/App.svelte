@@ -5,8 +5,6 @@
 <!-- TODO Add a timer up top so everyone knows how long it's been? -->
 <!-- TODO Highlight the person's card whose turn it is. -->
 
-
-
 <script>
   import PlayerCard from './components/PlayerCard.svelte'
   import Board from './components/Board.svelte'

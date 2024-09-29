@@ -36,23 +36,20 @@
   })
 </script>
 
-<div>
-    
-    <div class="dice-check-ex">
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <!-- svelte-ignore missing-declaration -->
-        <div class="dice" on:click={rollDice}>
-          {diceFaces[currentDiceFace - 1]}
-        </div>
-      </div>
-
+<div class="card">
+  <div class="dice-check-ex">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <!-- svelte-ignore missing-declaration -->
+    <div class="dice" on:click={rollDice}>
+      {diceFaces[currentDiceFace - 1]}
+    </div>
+  </div>
 </div>
-
 
 <style>
   .dice-check-ex {
-    position: absolute;
+    /* position: absolute; */
     bottom: 20px; /* adjust the bottom margin to your liking */
     right: 20px;
     padding: 10px;
@@ -60,11 +57,11 @@
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     color: black;
     justify-content: right;
-}
+  }
 
   /* Styling the dice */
   .dice {
-    font-size: 4rem;
+    font-size: 8vh;
     cursor: pointer;
     user-select: none;
     display: inline-block;
@@ -74,5 +71,24 @@
   /* Rolling effect (makes the dice scale slightly) */
   .dice:active {
     transform: scale(0.95);
+  }
+
+  .card {
+    position: absolute;
+    bottom: 20px; /* adjust the bottom margin to your liking */
+    right: 20px;
+    height: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    margin-bottom: 0px;
+
+    display: flex;
+    justify-content: space-between; /* Distribute the items evenly */
+    align-items: center;
+    width: 25%;
+    height: 10%;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   }
 </style>
