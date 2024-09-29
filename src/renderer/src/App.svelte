@@ -1,9 +1,9 @@
 <!-- TODO Add Dice sound effect -->
-<!-- TODO make the image attributions dynamic -->
 <!-- TODO make a object for each player that is dynamicslly generate based on the numb of players -->
 <!-- TODO Add, New game button, Save game?,  -->
-<!-- TODO Add a timer up top so everyone knows how long it's been? -->
 <!-- TODO Highlight the person's card whose turn it is. -->
+<!-- TODO make the Opportunity Cards clickable so they can be used -->
+<!--TODO Add another dice  -->
 
 <script>
   import PlayerCard from './components/PlayerCard.svelte'

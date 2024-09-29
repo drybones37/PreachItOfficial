@@ -11,8 +11,9 @@
   let tractAlt = 'Tract Icon'
   let fellowshipAlt = 'Fellowship Icon'
 
-  // Player info
-  let opCardNum = 1
+  // Player info TODO make this into an object
+  let opCardsList = [];
+  let opCardNum = opCardsList.length;
   let xpNum = 5
   let bibleNum = 10
   let tractNum = 8

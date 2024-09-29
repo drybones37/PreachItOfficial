@@ -8,6 +8,8 @@
 
   // Dice faces array (you can customize this with SVGs or images)
   const diceFaces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅']
+  const checkMark = '✔'
+  const exMark = '✘'
 
   // Function to handle rolling the dice
   function rollDice() {
@@ -45,6 +47,18 @@
       {diceFaces[currentDiceFace - 1]}
     </div>
   </div>
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <!-- svelte-ignore missing-declaration -->
+    <div class="check">
+      {checkMark}
+    </div>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <!-- svelte-ignore missing-declaration -->
+    <div class="ex">
+      {exMark}
+    </div>
 </div>
 
 <style>
@@ -52,7 +66,7 @@
     /* position: absolute; */
     bottom: 20px; /* adjust the bottom margin to your liking */
     right: 20px;
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 5px;
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     color: black;
@@ -68,9 +82,37 @@
     transition: transform 0.1s ease;
   }
 
+  .check {
+    font-size: 8vh;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    transition: transform 0.1s ease;
+    /* padding: 10px; */
+    color: black;
+  }
+
+  .ex {
+    font-size: 8vh;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    transition: transform 0.1s ease;
+    /* padding: 10px; */
+    color: black;
+  }
+
   /* Rolling effect (makes the dice scale slightly) */
   .dice:active {
-    transform: scale(0.95);
+    transform: scale(0.90);
+  }
+
+  .check:active {
+    transform: scale(0.90);
+  }
+
+  .ex:active {
+    transform: scale(0.90);
   }
 
   .card {
@@ -85,7 +127,7 @@
     margin-bottom: 0px;
 
     display: flex;
-    justify-content: space-between; /* Distribute the items evenly */
+    justify-content: space-around; /* Distribute the items evenly */
     align-items: center;
     width: 25%;
     height: 10%;
