@@ -9,6 +9,7 @@
   import PlayerCard from './components/PlayerCard.svelte'
   import Board from './components/Board.svelte'
   import DiceCheckEx from './components/DiceCheckEx.svelte'
+  import Timer from './components/Timer.svelte'
 </script>
 
 <div class="display">
@@ -16,6 +17,7 @@
     <!-- Content for the left side 3/4 of screen -->
     <Board />
     <DiceCheckEx />
+    <Timer />
   </div>
 
   <div class="right">
