@@ -1,56 +1,40 @@
 <!-- TODO Add Dice sound effect -->
 <!-- TODO make the image attributions dynamic -->
- <!-- TODO make a object for each player that is dynamicslly generate based on the numb of players -->
+<!-- TODO make a object for each player that is dynamicslly generate based on the numb of players -->
 <!-- TODO Add, New game button, Save game?,  -->
+<!-- TODO Add a timer up top so everyone knows how long it's been? -->
+<!-- TODO Highlight the person's card whose turn it is. -->
+
+
+
 <script>
   import PlayerCard from './components/PlayerCard.svelte'
   import Board from './components/Board.svelte'
   import DiceCheckEx from './components/DiceCheckEx.svelte'
-
-  
 </script>
-
 
 <div class="display">
   <div class="left">
     <!-- Content for the left side 3/4 of screen -->
-  <Board />
-  <DiceCheckEx />
-
+    <Board />
+    <DiceCheckEx />
   </div>
-
 
   <div class="right">
     <!-- Content for the right side 1/4th of screen-->
     <div class="controls">
-
       <PlayerCard />
-  </div>
+    </div>
   </div>
 </div>
 
-
-
- 
-
-
-
 <style>
-  
-
-
-
-
   /* Zoom control buttons */
   .controls {
-    position:sticky;
-    top: 20px;
-    right: 20px;
+    position: sticky;
+    /* top: 20px; */
+    /* right: 20px; */
   }
-
-  
-
-  
 
   .display {
     display: flex;
@@ -67,6 +51,8 @@
   .right {
     flex: 1; /* One part of the screen */
     background-color: lightcoral; /* For visual reference */
+    height: 100vh;
+    width: 100vw;
   }
 
   /* button {
