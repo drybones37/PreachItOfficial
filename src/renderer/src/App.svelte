@@ -20,6 +20,10 @@
     // Add logic to load a saved game here
   }
 
+  function saveGame(){
+
+  }
+
 
 </script>
 
@@ -27,6 +31,9 @@
 
 <div class="top">
   <nav class="top-bar">
+    <button class="save-game-button" on:click={saveGame}>
+      Save Game
+    </button>
     <button class="new-game-button" on:click={newGame}>
       New Game
     </button>
@@ -96,7 +103,7 @@
     z-index: 1;
   }
 
-  .new-game-button, .load-game-button {
+  .new-game-button, .load-game-button, .save-game-button {
     position:sticky;
     background-color: #44444400;
     color: #fff;
@@ -108,7 +115,7 @@
     z-index: 1;
   }
 
-  .new-game-button:hover, .load-game-button:hover {
+  .new-game-button:hover, .load-game-button:hover, .save-game-button:hover {
     background-color: #555;
   }
 </style>
