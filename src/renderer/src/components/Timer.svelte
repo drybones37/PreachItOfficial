@@ -74,7 +74,7 @@
     background-color: #f7f7f7;
     border: 1px solid #ddd;
     border-radius: 10px;
-    width: 30%;
+    width: 25%;
     height: 10%;
     padding: 10px;
     position: absolute;
@@ -88,7 +88,7 @@
     text-align: center;
     background-color: rgba(0, 0, 0, 0);
     border: none;
-    width: 45%; /* Adjust width to take half of the space */
+    width: 50%; /* Adjust width to take half of the space */
     height: 100%; /* Adjust height to fit the container */
     padding: 0px;
     margin-right: 10px; /* Add spacing between the input and buttons */
@@ -100,7 +100,7 @@
     /* justify-content: space-around; */
     flex-direction: column;
     align-items: center;
-    width: 45%; /* Adjust width to take half of the space */
+    width: 35%; /* Adjust width to take half of the space */
   }
 
   /* Style for start and stop buttons */
