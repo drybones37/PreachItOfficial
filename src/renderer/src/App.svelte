@@ -15,6 +15,7 @@
   function closeAlert() {
     if (userInput) {
       selectedNumber = userInput; // Store the input when alert is closed
+      // 
     }
     showAlert = false;
   }
@@ -60,6 +61,15 @@
     </button>
     <button class="load-game-button" on:click={loadGame}>
       Load Game
+    </button>
+    <button class="load-game-button" on:click={loadGame}>
+      App Instructions
+    </button>
+    <button class="load-game-button" on:click={loadGame}>
+      Game Rules
+    </button>
+    <button class="load-game-button" on:click={loadGame}>
+      Rules Summary
     </button>
   </nav>
   
@@ -111,17 +121,21 @@
   }
 
   .alert-content {
-    background-color: white;
+    background-color: rgb(36, 35, 35);
+    justify-content: space-evenly;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    color: rgb(255, 255, 255);
   }
 
   .alert-content input {
-    width: 100px;
-    padding: 5px;
+    width: 20vw;
+    padding: 10px;
+    /* padding-top: 10px; */
     margin-bottom: 10px;
+    font-size: 15px;
   }
 
   .alert-buttons {

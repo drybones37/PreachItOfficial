@@ -1,5 +1,5 @@
 <script>
-  let opCards = 'src/assets/OpCards/Cover.webp'
+  let opCards = 'src/assets/OpCards/CoverUpright.webp'
   let xpIcon = 'src/assets/Icons/XPIcon.webp'
   let bibleIcon = 'src/assets/Icons/BIBLEIcon.webp'
   let tractIcon = 'src/assets/Icons/TRACTIcon.webp'

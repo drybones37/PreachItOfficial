@@ -1,12 +1,20 @@
-
 <script>
-// let zoomLevel = 1;
- let position = { x: 0, y: 0 }
+  // let zoomLevel = 1;
+  let position = { x: 0, y: 0 }
   let isPanning = false
   let lastMousePosition = null
 
   // Functions to zoom in and out
   let scale = 1 // Initial scale (100%)
+
+  // Opportunity cards
+  function opCard() {
+    console.log('op card clicked')
+  }
+
+  function argCard() {
+    console.log('op card clicked')
+  }
 
   // Function to handle zooming in and out
   function zoom(event) {
@@ -51,23 +59,39 @@
   window.addEventListener('mouseup', () => {
     lastMousePosition = null
   })
-
-
 </script>
 
-
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <div class="image-container" on:wheel={zoom}>
-<img
+  <img
     src="src/assets/PreachItBoard.webp"
     alt=""
     style="position: absolute; transform: scale({scale}) translate({position.x}px, {position.y}px); transition: transform 0.2s ease;"
   />
+
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <img
+    class="arg-card-clickable" on:click={argCard}
+    src="src/assets/ArgCards/RedACCoverSideWays.webp"
+    alt="Op cards clickable"
+    style="position: absolute; transform: scale({scale}) translate({position.x -
+      140}px, {position.y - 40}px); transition: transform 0.2s ease;"
+  />
+
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <img
+    class="op-card-clickable" on:click={opCard}
+    src="src/assets/OpCards/Cover.webp"
+    alt="Op cards clickable"
+    style="position: absolute; transform: scale({scale}) translate({position.x -
+      140}px, {position.y + 40}px); transition: transform 0.2s ease;"
+  />
+  <!-- TODO Add Player pieces -->
 </div>
 
 <style>
-
   /* Centering the container */
-    .image-container {
+  .image-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,4 +106,27 @@
     max-height: 100%;
   }
 
+  .arg-card-clickable {
+    height: 40px;
+    width: 60px;
+  }
+  .arg-card-clickable:hover {
+    cursor: pointer;
+  }
+  .arg-card-clickable:active {
+    cursor: pointer;
+    
+  }
+
+  .op-card-clickable {
+    width: 50px;
+    height: 30px;
+  }
+  .op-card-clickable:hover {
+    cursor: pointer;
+  }
+  .op-card-clickable:active {
+    cursor: pointer;
+    
+  }
 </style>
