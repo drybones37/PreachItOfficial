@@ -1,45 +1,39 @@
+<!-- TODO make the images scale properly -->
+
 <script>
   import PlayerCard from './components/PlayerCard.svelte'
   import Board from './components/Board.svelte'
   import DiceCheckEx from './components/DiceCheckEx.svelte'
   import Timer from './components/Timer.svelte'
 
-  let showAlert = false;
-  let userInput = ""; // Store user input
-  let selectedNumber = ""; // Store the final selected number
+  let showAlert = false
+  let userInput = '' // Store user input
+  let selectedNumber = '' // Store the final selected number
 
   function newGame() {
-    showAlert = true;
+    showAlert = true
   }
 
   function closeAlert() {
     if (userInput) {
-      selectedNumber = userInput; // Store the input when alert is closed
-      // 
+      selectedNumber = userInput // Store the input when alert is closed
+      //
     }
-    showAlert = false;
+    showAlert = false
   }
 
   function loadGame() {
     // Add logic to load a saved game here
   }
 
-  function saveGame() {
-
-  }
+  function saveGame() {}
 </script>
 
 {#if showAlert}
   <div class="custom-alert">
     <div class="alert-content">
       <p>Enter a number between 2 and 8:</p>
-      <input
-        type="number"
-        min="2"
-        max="8"
-        bind:value={userInput}
-        placeholder="Enter a number"
-      />
+      <input type="number" min="2" max="8" bind:value={userInput} placeholder="Enter a number" />
       <div class="alert-buttons">
         <button on:click={closeAlert}>OK</button>
       </div>
@@ -53,26 +47,14 @@
 
 <div class="top">
   <nav class="top-bar">
-    <button class="save-game-button" on:click={saveGame}>
-      Save Game
-    </button>
-    <button class="new-game-button" on:click={newGame}>
-      New Game
-    </button>
-    <button class="load-game-button" on:click={loadGame}>
-      Load Game
-    </button>
-    <button class="load-game-button" on:click={loadGame}>
-      App Instructions
-    </button>
-    <button class="load-game-button" on:click={loadGame}>
-      Game Rules
-    </button>
-    <button class="load-game-button" on:click={loadGame}>
-      Rules Summary
-    </button>
+    <button class="save-game-button" on:click={saveGame}> Save Game </button>
+    <button class="new-game-button" on:click={newGame}> New Game </button>
+    <button class="load-game-button" on:click={loadGame}> Load Game </button>
+    <button class="load-game-button" on:click={loadGame}> App Instructions </button>
+    <button class="load-game-button" on:click={loadGame}> Game Rules </button>
+    <button class="load-game-button" on:click={loadGame}> Rules Summary </button>
   </nav>
-  
+
   <div class="display">
     <div class="left">
       <!-- Content for the left side 3/4 of screen -->
@@ -92,7 +74,9 @@
 
 <style>
   /* General button styles */
-  .new-game-button, .load-game-button, .save-game-button {
+  .new-game-button,
+  .load-game-button,
+  .save-game-button {
     background-color: #44444400;
     color: #fff;
     border: none;
@@ -102,7 +86,9 @@
     z-index: 1;
   }
 
-  .new-game-button:hover, .load-game-button:hover, .save-game-button:hover {
+  .new-game-button:hover,
+  .load-game-button:hover,
+  .save-game-button:hover {
     background-color: #555;
   }
 

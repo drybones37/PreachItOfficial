@@ -63,39 +63,99 @@
 
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <div class="image-container" on:wheel={zoom}>
+  
+
+  <!-- TODO FIX SVG -->
+  <!-- svelte-ignore a11y-missing-attribute -->
+  <!-- <object type="image/svg+xml" data="src/assets/OpCard.svg"
+  style="position: absolute; transform: scale({scale}) translate({position.x}px, {position.y}px); transition: transform 0.2s ease;">
+    Your browser does not support SVG.
+  </object> -->
+
+  <!-- <embed type="image/svg+xml" src="src/assets/OpCard.svg"
+    style="position: absolute; transform: scale({scale/10}) translate({position.x*10}px, {position.y*10}px); transition: transform 0.2s ease;"/> -->
+
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- <img
+    class="arg-card-clickable"
+    on:click={argCard}
+    src="src/assets/ArgCards/RedACCoverSideWays.webp"
+    alt="Arg cards clickable"
+    style="position: absolute; transform: scale({scale / 7.5}) translate({(position.x - 150) *
+      7.5}px, {(position.y + 40) * 7.5}px); transition: transform 0.2s ease;"
+  /> -->
+
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- <img
+    class="op-card-clickable"
+    on:click={opCard}
+    src="src/assets/OpCards/Cover.webp"
+    alt="Op cards clickable"
+    style="position: absolute; transform: scale({scale / 7.5}) translate({(position.x - 80) *
+      7.5}px, {(position.y - 40) * 7.5}px); transition: transform 0.2s ease;"
+  /> -->
   <img
+    class="preach-it-board"
     src="src/assets/PreachItBoard.webp"
     alt=""
     style="position: absolute; transform: scale({scale}) translate({position.x}px, {position.y}px); transition: transform 0.2s ease;"
   />
-
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <img
-    class="arg-card-clickable" on:click={argCard}
-    src="src/assets/ArgCards/RedACCoverSideWays.webp"
-    alt="Op cards clickable"
-    style="position: absolute; transform: scale({scale}) translate({position.x -
-      140}px, {position.y - 40}px); transition: transform 0.2s ease;"
-  />
-
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <img
-    class="op-card-clickable" on:click={opCard}
-    src="src/assets/OpCards/Cover.webp"
-    alt="Op cards clickable"
-    style="position: absolute; transform: scale({scale}) translate({position.x -
-      140}px, {position.y + 40}px); transition: transform 0.2s ease;"
-  />
-  <!-- TODO Add Player pieces -->
+  <!-- Semi-transparent grid overlay -->
+  <div
+  class="grid-overlay"
+  style="transform: scale({scale}) translate({position.x}px, {position.y}px);"
+>
+  {#each Array(8) as _, row}
+    {#each Array(8) as _, col}
+      <div class="grid-cell"></div>
+    {/each}
+  {/each}
+</div>
+  
 </div>
 
 <style>
   /* Centering the container */
   .image-container {
+    position: relative; /* Keep this to position children absolutely */
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: auto;
+    overflow: hidden;
+    width: 100%; /* Make sure it fills the container */
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .preach-it-board {
+    position: absolute; /* Positioning absolute within the relative container */
+    top: 0; /* Ensure the image starts at the top */
+    left: 0; /* Ensure the image starts at the left */
+    width: 100%; /* Make sure it fills the container */
+    height: auto; /* Maintain aspect ratio */
+    aspect-ratio: 1 / 1;
+    transition: transform 0.2s ease; 
+    z-index: 0; /* Ensure the board is behind the grid */
+  }
+
+  .grid-overlay {
+    position: absolute;
+    top: 0; /* Align it with the top of the container */
+    left: 0; /* Align it with the left of the container */
+    /* transform: translate(10%, 10%); */
+    width: 100%;   /* Ensure it fills the container */
+    height: 100%;  /* Ensure it fills the container */
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    pointer-events: none; /* Prevent grid from blocking clicks */
+    z-index: 10; /* Higher than the board */
+    padding: 5%;
+  }
+
+  .grid-cell {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
   }
 
   /* Styling the image */
@@ -107,26 +167,28 @@
   }
 
   .arg-card-clickable {
-    height: 40px;
-    width: 60px;
+    pointer-events: auto;
+    aspect-ratio: 1 / 1;
   }
   .arg-card-clickable:hover {
     cursor: pointer;
   }
   .arg-card-clickable:active {
     cursor: pointer;
-    
+    scale: 0.995;
+    /* align-self: center; */
+    /* width: 95dvw; */
   }
 
   .op-card-clickable {
-    width: 50px;
-    height: 30px;
+    pointer-events: auto;
+    aspect-ratio: 1 / 1;
   }
   .op-card-clickable:hover {
     cursor: pointer;
   }
   .op-card-clickable:active {
     cursor: pointer;
-    
+    scale: 0.995;
   }
 </style>
