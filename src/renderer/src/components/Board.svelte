@@ -7,6 +7,11 @@
   // Functions to zoom in and out
   let scale = 1 // Initial scale (100%)
 
+  // State to hold the dropped images
+  let droppedImages = Array.from({ length: 8 }, () => Array(8).fill(null));
+    let imagePositions = Array.from({ length: 8 }, () => Array(8).fill(null)); // To hold image positions
+  
+
   // Opportunity cards
   function opCard() {
     console.log('op card clicked')
@@ -44,6 +49,40 @@
     }
   })
 
+  // Drag-and-drop functions
+  function handleDragStart(event, src) {
+      event.dataTransfer.setData("text/plain", src); // Store the image src
+    }
+  
+    function handleDrop(event, row, col) {
+      event.preventDefault(); // Prevent default behavior
+      const src = event.dataTransfer.getData("text/plain"); // Get the dragged image src
+  
+      // Remove the image from other cells
+      for (let r = 0; r < droppedImages.length; r++) {
+        for (let c = 0; c < droppedImages[r].length; c++) {
+          if (droppedImages[r][c] === src) {
+            droppedImages[r][c] = null; // Clear duplicate images
+          }
+        }
+      }
+  
+      // Store the image in the current cell
+      droppedImages[row][col] = src; // Store the image in the grid
+  
+      // Get mouse position and calculate the image position
+      const rect = event.target.getBoundingClientRect();
+      const mouseX = event.clientX - rect.left; // X position relative to the cell
+      const mouseY = event.clientY - rect.top; // Y position relative to the cell
+  
+      // Save the position of the dropped image
+      imagePositions[row][col] = { x: mouseX, y: mouseY }; 
+    }
+  
+    function allowDrop(event) {
+      event.preventDefault(); // Allow dropping
+    }
+
   // Event listener for mouse movements
   window.addEventListener('mousemove', (event) => {
     if (isPanning && lastMousePosition) {
@@ -65,16 +104,6 @@
 <div class="image-container" on:wheel={zoom}>
   
 
-  <!-- TODO FIX SVG -->
-  <!-- svelte-ignore a11y-missing-attribute -->
-  <!-- <object type="image/svg+xml" data="src/assets/OpCard.svg"
-  style="position: absolute; transform: scale({scale}) translate({position.x}px, {position.y}px); transition: transform 0.2s ease;">
-    Your browser does not support SVG.
-  </object> -->
-
-  <!-- <embed type="image/svg+xml" src="src/assets/OpCard.svg"
-    style="position: absolute; transform: scale({scale/10}) translate({position.x*10}px, {position.y*10}px); transition: transform 0.2s ease;"/> -->
-
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- <img
     class="arg-card-clickable"
@@ -85,15 +114,6 @@
       7.5}px, {(position.y + 40) * 7.5}px); transition: transform 0.2s ease;"
   /> -->
 
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <!-- <img
-    class="op-card-clickable"
-    on:click={opCard}
-    src="src/assets/OpCards/Cover.webp"
-    alt="Op cards clickable"
-    style="position: absolute; transform: scale({scale / 7.5}) translate({(position.x - 80) *
-      7.5}px, {(position.y - 40) * 7.5}px); transition: transform 0.2s ease;"
-  /> -->
   <img
     class="preach-it-board"
     src="src/assets/PreachItBoard.webp"
@@ -102,17 +122,53 @@
   />
   <!-- Semi-transparent grid overlay -->
   <div
-  class="grid-overlay"
-  style="transform: scale({scale}) translate({position.x}px, {position.y}px);"
->
-  {#each Array(8) as _, row}
-    {#each Array(8) as _, col}
-      <div class="grid-cell"></div>
-    {/each}
-  {/each}
-</div>
+      class="grid-overlay"
+      style="transform: scale({scale}) translate({position.x}px, {position.y}px);"
+    >
+      {#each Array(8) as _, row}
+        {#each Array(8) as _, col}
+          <!-- svelte-ignore a11y-no-static-element-interactions -->
+          <div 
+            class="grid-cell" 
+            on:drop={(event) => handleDrop(event, row, col)} 
+            on:dragover={allowDrop}
+          >
+            {#if droppedImages[row][col]}
+              <!-- svelte-ignore a11y-img-redundant-alt -->
+              <img 
+                src={droppedImages[row][col]} 
+                alt="Dropped Image" 
+                class="dropped-image" 
+                style="position: absolute; 
+                       left: {imagePositions[row][col]?.x}px; 
+                       top: {imagePositions[row][col]?.y}px; 
+                       width: auto; 
+                       height: auto; 
+                       max-width: 100%; 
+                       max-height: 100%; 
+                       object-fit: cover;" 
+              />
+            {/if}
+          </div>
+        {/each}
+      {/each}
+    </div>
+
+    <div class="draggable-images">
+      <img 
+        style="z-index: 20;"
+        src="src/assets/OpCards/Cover.webp" 
+        alt="Opportunity Card" 
+        draggable="true" 
+        on:dragstart={(event) => handleDragStart(event, 'src/assets/OpCards/Cover.webp')}
+        class="draggable"
+      />
+    </div>
+    
   
 </div>
+
+<!-- Example images to drag -->
 
 <style>
   /* Centering the container */
@@ -142,7 +198,6 @@
     position: absolute;
     top: 0; /* Align it with the top of the container */
     left: 0; /* Align it with the left of the container */
-    /* transform: translate(10%, 10%); */
     width: 100%;   /* Ensure it fills the container */
     height: 100%;  /* Ensure it fills the container */
     display: grid;
@@ -156,7 +211,34 @@
   .grid-cell {
     border: 1px solid rgba(0, 0, 0, 0.5);
     background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
+    pointer-events: auto; 
+    position: relative; 
   }
+
+  .dropped-image {
+      position: absolute; /* Positioning for dropped images */
+      width: auto; 
+      height: auto; 
+      max-width: 100%; 
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .draggable-images {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+  
+    .draggable {
+      width: 50px;
+      height: auto;
+      cursor: grab;
+    }
+  
+    .draggable:active {
+      cursor: grabbing;
+    }
 
   /* Styling the image */
   img {
