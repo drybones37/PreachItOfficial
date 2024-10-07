@@ -1,10 +1,14 @@
-<!-- TODO make the images scale properly -->
+<!-- TODO Make a bowl that I can click to auto add player pieces to the board and drag and drop list. -->
+
 
 <script>
   import PlayerCard from './components/PlayerCard.svelte'
   import Board from './components/Board.svelte'
   import DiceCheckEx from './components/DiceCheckEx.svelte'
   import Timer from './components/Timer.svelte'
+  import OpCard from './components/OpCard.svelte'
+  import ArgCard from './components/ArgCard.svelte'
+
 
   let showAlert = false
   let userInput = '' // Store user input
@@ -60,6 +64,8 @@
       <!-- Content for the left side 3/4 of screen -->
       <Board />
       <DiceCheckEx />
+      <OpCard />
+      <ArgCard />
       <Timer />
     </div>
 

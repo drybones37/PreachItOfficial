@@ -12,15 +12,7 @@
     let imagePositions = Array.from({ length: 8 }, () => Array(8).fill(null)); // To hold image positions
   
 
-  // Opportunity cards
-  function opCard() {
-    console.log('op card clicked')
-  }
-
-  function argCard() {
-    console.log('op card clicked')
-  }
-
+ 
   // Function to handle zooming in and out
   function zoom(event) {
     event.preventDefault()
@@ -105,14 +97,7 @@
   
 
   <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <!-- <img
-    class="arg-card-clickable"
-    on:click={argCard}
-    src="src/assets/ArgCards/RedACCoverSideWays.webp"
-    alt="Arg cards clickable"
-    style="position: absolute; transform: scale({scale / 7.5}) translate({(position.x - 150) *
-      7.5}px, {(position.y + 40) * 7.5}px); transition: transform 0.2s ease;"
-  /> -->
+  
 
   <img
     class="preach-it-board"
