@@ -8,6 +8,7 @@
   import Timer from './components/Timer.svelte'
   import OpCard from './components/OpCard.svelte'
   import ArgCard from './components/ArgCard.svelte'
+  // import DragNDrop from './components/DragNDrop.svelte'
 
 
   let showAlert = false
@@ -63,6 +64,8 @@
     <div class="left">
       <!-- Content for the left side 3/4 of screen -->
       <Board />
+      <!-- <DragNDrop/> -->
+
       <DiceCheckEx />
       <OpCard />
       <ArgCard />
