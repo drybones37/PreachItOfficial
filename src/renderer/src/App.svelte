@@ -9,22 +9,21 @@
   import OpCard from './components/OpCard.svelte'
   import ArgCard from './components/ArgCard.svelte'
   import BagOfCharacters from './components/BagOfCharacters.svelte'
-  // import DragNDrop from './components/DragNDrop.svelte'
 
 
   let showAlert = false
-  let userInput = '' 
-  let selectedNumber = '' 
 
   function newGame() {
     showAlert = true
   }
 
+  function resetGameData() {
+    // TODO Make a reset function that clears all game data
+    showAlert = false
+  }
+
   function closeAlert() {
-    if (userInput) {
-      selectedNumber = userInput // Store the input when alert is closed
-      //
-    }
+    
     showAlert = false
   }
 
@@ -38,10 +37,12 @@
 {#if showAlert}
   <div class="custom-alert">
     <div class="alert-content">
-      <p>Enter a number between 2 and 8:</p>
-      <input type="number" min="2" max="8" bind:value={userInput} placeholder="Enter a number" />
+      <p>Are you sure you want to reset all game data?</p>
+      <p>If so click "Yes".</p>
+      <wbr/>
       <div class="alert-buttons">
-        <button on:click={closeAlert}>OK</button>
+        <button on:click={resetGameData}>Yes</button>
+        <button on:click={closeAlert}>Cancel</button>
       </div>
     </div>
   </div>
@@ -67,7 +68,6 @@
       <!-- Content for the left side 3/4 of screen -->
       <Board />
       <!-- <DragNDrop/> -->
-
       <DiceCheckEx />
       <OpCard />
       <ArgCard />

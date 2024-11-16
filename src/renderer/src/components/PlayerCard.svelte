@@ -1,64 +1,82 @@
 <script>
-  let opCards = 'src/assets/OpCards/CoverUpright.webp'
-  let xpIcon = 'src/assets/Icons/XPIcon.webp'
-  let bibleIcon = 'src/assets/Icons/BIBLEIcon.webp'
-  let tractIcon = 'src/assets/Icons/TRACTIcon.webp'
-  let fellowshipIcon = 'src/assets/Icons/FELLOWSHIPIcon.webp'
 
-  let opCardAlt = 'Op cards'
-  let xpAlt = 'XP Icon'
-  let bibleAlt = 'Bible Icon'
-  let tractAlt = 'Tract Icon'
-  let fellowshipAlt = 'Fellowship Icon'
 
-  // Player info TODO make this into an object
-  let opCardsList = [];
-  let opCardNum = opCardsList.length;
-  let xpNum = 5
-  let bibleNum = 10
-  let tractNum = 8
-  let fellowshipNum = 3
-  let pname = 'Ash' + ':'
+  let players = [
+    { name: 'Player 1', xpNum: 5, bibleNum: 0, tractNum: 8, fellowshipNum: 3, opCardsList: [] },
+    { name: 'Player 2', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
+    { name: 'Player 3', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
+    { name: 'Player 4', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
+    { name: 'Player 5', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
+    { name: 'Player 6', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
+    { name: 'Player 7', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
+    { name: 'Player 8', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] }
+  ]
 
-  //
+  let playerCount = 2 // Default to showing 2 players
+
+  // Filter players based on the selected count
+  $: visiblePlayers = players.slice(0, playerCount)
+
+  function updatePlayerCount(count) {
+    playerCount = Math.max(2, Math.min(count, players.length)) // Ensure range is between 2 and the max players
+  }
+
+  function editPlayer(playerNum) {
+    // TODO Implement player editing logic
+  }
 </script>
 
+<div class="controls">
+  <label for="player-count">Select number of players:</label>
+  <input
+    id="player-count"
+    type="number"
+    min="2"
+    max={players.length}
+    value={playerCount}
+    on:input={(e) => updatePlayerCount(+e.target.value)}
+    style="width: 50px;"
+  />
+</div>
+
 <div class="pad">
-  <div class="player-card">
-    <div class="card-content">
-      <!-- svelte-ignore a11y-label-has-associated-control -->
-      <div class="image-row">
-        <label class="card-label">
-          {pname}
-        </label>
+  {#each visiblePlayers as player, i}
+    <div class="player-card">
+      <div class="card-content">
+        <div class="image-row">
+          <input class="name" placeholder="Name" bind:value={player.name} />
 
-        <div class="image-container">
-          <img src={opCards} alt={opCardAlt} class="ops-card-cover" />
-          <span class="overlay-number">{opCardNum}</span>
-        </div>
+          <div class="image-container">
+            <img src="src/assets/OpCards/CoverUpright.webp" alt="Op Card" class="ops-card-cover" />
+            <span class="overlay-number">3</span>
+          </div>
 
-        <div class="image-container">
-          <img src={bibleIcon} alt={bibleAlt} class="xp-icon" />
-          <span class="overlay-number">{bibleNum}</span>
-        </div>
+          <div class="image-container">
+            <img src="src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="xp-icon" />
+            <span class="overlay-number">{player.bibleNum}</span>
+          </div>
 
-        <div class="image-container">
-          <img src={tractIcon} alt={tractAlt} class="xp-icon" />
-          <span class="overlay-number">{tractNum}</span>
-        </div>
+          <div class="image-container">
+            <img src="src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="xp-icon" />
+            <span class="overlay-number">{player.tractNum}</span>
+          </div>
 
-        <div class="image-container">
-          <img src={fellowshipIcon} alt={fellowshipAlt} class="xp-icon" />
-          <span class="overlay-number">{fellowshipNum}</span>
-        </div>
+          <div class="image-container">
+            <img src="src/assets/Icons/FELLOWSHIPIcon.webp" alt="Fellowship Icon" class="xp-icon" />
+            <span class="overlay-number">{player.fellowshipNum}</span>
+          </div>
 
-        <div class="image-container">
-          <img src={xpIcon} alt={xpAlt} class="xp-icon" />
-          <span class="overlay-number">{xpNum}</span>
+          <div class="image-container">
+            <img src="src/assets/Icons/XPIcon.webp" alt="XP Icon" class="xp-icon" />
+            <span class="overlay-number">{player.xpNum}</span>
+          </div>
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
+          <!-- svelte-ignore a11y-no-static-element-interactions -->
+          <span class="overlay-button" on:click={editPlayer(i)}>{'≡'}</span>
         </div>
       </div>
     </div>
-  </div>
+  {/each}
 </div>
 
 <style>
@@ -71,29 +89,47 @@
     padding-top: 6px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    margin-bottom: 0px;
+    margin-bottom: 10px;
   }
 
   .card-content {
     padding: 5px;
   }
 
-  .card-label {
-    display: flex;
-    flex-direction: column;
+  .name {
     color: black;
     font-size: 16px;
-    padding-left: 10px;
-    padding-right: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    width: 100px;
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  label {
+    color: black;
+    font-size: 16px;
+    padding: 15px;
+    padding-top: 10px;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 15px;
+  }
+
+  .controls {
+    padding-top: 10px;
+    align-self: center;
+    align-items: center;
+    align-content: center;
   }
 
   .image-row {
-  display: flex;
-  justify-content: space-between; /* Distribute the items evenly */
-  align-items: center;
-  width: 100%; /* Make sure the row takes full width */
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 
   .image-container {
     position: relative;
@@ -115,10 +151,23 @@
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
     font-size: 9px;
-    /* this will apply to <body> */
-    /* your styles go here */
     padding: 2px 3px;
     border-radius: 30%;
+  }
+
+  .overlay-button {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 20px;
+    /* padding: 2px; */
+    padding-left: 9px;
+    padding-right: 9px;
+    border-radius: 30%;
+  }
+
+  .overlay-button:active {
+    transform: scale(0.95);
   }
 
   .xp-icon {
