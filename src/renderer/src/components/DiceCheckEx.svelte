@@ -3,13 +3,13 @@
 
   // Dice roll variables
   let currentDiceFace = 1 // Default dice face
+  let currentDiceFace2 = 1
   let rolling = false // To simulate the rolling effect
   let rollSound
 
   // Dice faces array (you can customize this with SVGs or images)
   const diceFaces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅']
-  const checkMark = '✔'
-  const exMark = '✘'
+  // const exMark = '✘'
 
   // Function to handle rolling the dice
   function rollDice() {
@@ -22,6 +22,26 @@
       // Simulate rolling effect
       const rollInterval = setInterval(() => {
         currentDiceFace = Math.floor(Math.random() * 6) + 1
+      }, 100)
+
+      // Stop rolling after 1 second
+      setTimeout(() => {
+        clearInterval(rollInterval)
+        rolling = false
+      }, 1000)
+    }
+  }
+
+  function rollDice2() {
+    if (!rolling) {
+      rolling = true
+
+      // Play sound
+      rollSound.play()
+
+      // Simulate rolling effect
+      const rollInterval = setInterval(() => {
+        currentDiceFace2 = Math.floor(Math.random() * 6) + 1
       }, 100)
 
       // Stop rolling after 1 second
@@ -46,30 +66,24 @@
     <div class="dice" on:click={rollDice}>
       {diceFaces[currentDiceFace - 1]}
     </div>
-    
   </div>
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <!-- svelte-ignore missing-declaration -->
-    <div class="check">
-      {checkMark}
-    </div>
+
+  <div class="dice-check-ex">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore missing-declaration -->
-    <div class="ex">
-      {exMark}
+    <div class="dice2" on:click={rollDice2}>
+      {diceFaces[currentDiceFace2 - 1]}
     </div>
+  </div>
+  
 </div>
 
 <style>
   .dice-check-ex {
-    /* position: absolute; */
-    bottom: 20px; /* adjust the bottom margin to your liking */
+    bottom: 20px; 
     right: 20px;
-    /* padding: 10px; */
     border-radius: 5px;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     color: black;
     justify-content: right;
   }
@@ -83,24 +97,12 @@
     transition: transform 0.1s ease;
   }
 
-  .check {
+  .dice2 {
     font-size: 8vh;
     cursor: pointer;
     user-select: none;
     display: inline-block;
     transition: transform 0.1s ease;
-    /* padding: 10px; */
-    color: black;
-  }
-
-  .ex {
-    font-size: 8vh;
-    cursor: pointer;
-    user-select: none;
-    display: inline-block;
-    transition: transform 0.1s ease;
-    /* padding: 10px; */
-    color: black;
   }
 
   /* Rolling effect (makes the dice scale slightly) */
@@ -108,30 +110,18 @@
     transform: scale(0.90);
   }
 
-  .check:active {
-    transform: scale(0.90);
-  }
-
-  .ex:active {
-    transform: scale(0.90);
-  }
-
   .card {
-    position: absolute;
-    bottom: 20px; /* adjust the bottom margin to your liking */
-    right: 20px;
-    height: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     background-color: #f7f7f7;
     border: 1px solid #ddd;
     border-radius: 10px;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    margin-bottom: 0px;
-
-    display: flex;
-    justify-content: space-around; /* Distribute the items evenly */
-    align-items: center;
-    width: 25%;
+    width: 20%;
     height: 10%;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    padding: 10px;
+    position: absolute;
+    bottom: 42.5%;
+    left: 20px;
   }
 </style>

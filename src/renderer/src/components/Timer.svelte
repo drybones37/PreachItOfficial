@@ -74,7 +74,7 @@
     background-color: #f7f7f7;
     border: 1px solid #ddd;
     border-radius: 10px;
-    width: 25%;
+    width: 20%;
     height: 10%;
     padding: 10px;
     position: absolute;

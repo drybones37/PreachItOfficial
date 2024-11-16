@@ -1,5 +1,5 @@
 <!-- TODO Make a bowl that I can click to auto add player pieces to the board and drag and drop list. -->
-
+<!-- TODO add sound effects -->
 
 <script>
   import PlayerCard from './components/PlayerCard.svelte'
@@ -8,12 +8,13 @@
   import Timer from './components/Timer.svelte'
   import OpCard from './components/OpCard.svelte'
   import ArgCard from './components/ArgCard.svelte'
+  import BagOfCharacters from './components/BagOfCharacters.svelte'
   // import DragNDrop from './components/DragNDrop.svelte'
 
 
   let showAlert = false
-  let userInput = '' // Store user input
-  let selectedNumber = '' // Store the final selected number
+  let userInput = '' 
+  let selectedNumber = '' 
 
   function newGame() {
     showAlert = true
@@ -58,6 +59,7 @@
     <button class="load-game-button" on:click={loadGame}> App Instructions </button>
     <button class="load-game-button" on:click={loadGame}> Game Rules </button>
     <button class="load-game-button" on:click={loadGame}> Rules Summary </button>
+    <button class="load-game-button" on:click={loadGame}> Remove Pieces </button>
   </nav>
 
   <div class="display">
@@ -70,6 +72,7 @@
       <OpCard />
       <ArgCard />
       <Timer />
+      <BagOfCharacters />
     </div>
 
     <div class="right">
@@ -187,3 +190,5 @@
     z-index: 1;
   }
 </style>
+
+

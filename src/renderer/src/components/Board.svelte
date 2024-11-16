@@ -5,7 +5,7 @@
   let lastMousePosition = null;
 
   // Functions to zoom in and out
-  let scale = .65; // Initial scale (100%)
+  let scale = .70; // Initial scale (100%)
 
   // State to hold the dropped images (each cell now holds an array of images)
   // let droppedImages = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => []));
