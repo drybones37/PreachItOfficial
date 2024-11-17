@@ -1,5 +1,7 @@
 <!-- TODO Make a bowl that I can click to auto add player pieces to the board and drag and drop list. -->
 <!-- TODO add sound effects -->
+<!-- TODO Evenly space items on the left -->
+<!-- TODO Add Opportunity Cards -->
 
 <script>
   import PlayerCard from './components/PlayerCard.svelte'

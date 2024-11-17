@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte'
 
+
+  let choosingPieces = true
   let bagSound
   let bagImgs = 'src/assets/BagOfCharac.webp'
   let bagImgAlt = 'Bag of characters'
@@ -13,6 +15,14 @@
   onMount(() => {
     bagSound = new Audio('src/assets/dice-roll-sound.mp3')
   })
+
+  function savePlayer() {
+    choosingPieces = false
+  }
+
+  function closePopup() {
+    choosingPieces = false
+  }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -21,6 +31,55 @@
   <!-- <div class="image-container"> -->
   <img src={bagImgs} alt={bagImgAlt} class="ops-card-cover" />
 </div>
+
+{#if choosingPieces}
+  <div class="popup">
+    <div class="popup-content">
+      <h3>Click Character to Add to Board</h3>
+      <div class="edit-image-row">
+      <div class="field">
+        <div class="edit-image-container">
+          <img src="src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="edit-xp-icon" />
+        </div>
+        <!-- Push images to draggle images list -->
+        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].bibleNum} />
+      </div>
+
+      <div class="field">
+        <div class="edit-image-container">
+          <img src="src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="edit-xp-icon" />
+        </div>
+        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].tractNum} />
+      </div>
+    </div>
+
+    <div class="edit-image-row">
+      <div class="field">
+        <div class="edit-image-container">
+          <img src="src/assets/Icons/FELLOWSHIPIcon.webp" alt="Fellowship Icon" class="edit-xp-icon" />
+        </div>
+        <input
+          class="pnumclass"
+          type="number"
+          bind:value={players[selectedPlayerIndex].fellowshipNum}
+        />
+      </div>
+
+      <div class="field">
+        <div class="edit-image-container">
+          <img src="src/assets/Icons/XPIcon.webp" alt="XP Icon" class="edit-xp-icon" />
+        </div>
+        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].xpNum} />
+      </div>
+    </div>
+
+      <div class="popup-buttons">
+        <button on:click={savePlayer}>Save</button>
+        <button on:click={closePopup}>Cancel</button>
+      </div>
+    </div>
+  </div>
+{/if}
 
 <style>
   img:active {
