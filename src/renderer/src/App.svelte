@@ -128,13 +128,12 @@
     color: rgb(255, 255, 255);
   }
 
-  .alert-content input {
+  /* .alert-content input {
     width: 20vw;
     padding: 10px;
-    /* padding-top: 10px; */
     margin-bottom: 10px;
     font-size: 15px;
-  }
+  } */
 
   .alert-buttons {
     display: flex;
@@ -190,5 +189,4 @@
     z-index: 1;
   }
 </style>
-
 

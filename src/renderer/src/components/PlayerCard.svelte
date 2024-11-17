@@ -1,5 +1,6 @@
 <script>
-
+  let editingPlayer = false
+  let selectedPlayerIndex = 0
 
   let players = [
     { name: 'Player 1', xpNum: 5, bibleNum: 0, tractNum: 8, fellowshipNum: 3, opCardsList: [] },
@@ -22,7 +23,17 @@
   }
 
   function editPlayer(playerNum) {
-    // TODO Implement player editing logic
+    editingPlayer = true
+
+    selectedPlayerIndex = playerNum
+  }
+
+  function savePlayer() {
+    editingPlayer = false
+  }
+
+  function closePopup() {
+    editingPlayer = false
   }
 </script>
 
@@ -72,12 +83,60 @@
           </div>
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <!-- svelte-ignore a11y-no-static-element-interactions -->
-          <span class="overlay-button" on:click={editPlayer(i)}>{'≡'}</span>
+          <span class="overlay-button" on:click={() => editPlayer(i)}>{'≡'}</span>
         </div>
       </div>
     </div>
   {/each}
 </div>
+
+{#if editingPlayer}
+  <div class="popup">
+    <div class="popup-content">
+      <h3>Editing: {players[selectedPlayerIndex].name}</h3>
+      <div class="edit-image-row">
+      <div class="field">
+        <div class="edit-image-container">
+          <img src="src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="edit-xp-icon" />
+        </div>
+        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].bibleNum} />
+      </div>
+
+      <div class="field">
+        <div class="edit-image-container">
+          <img src="src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="edit-xp-icon" />
+        </div>
+        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].tractNum} />
+      </div>
+    </div>
+
+    <div class="edit-image-row">
+      <div class="field">
+        <div class="edit-image-container">
+          <img src="src/assets/Icons/FELLOWSHIPIcon.webp" alt="Fellowship Icon" class="edit-xp-icon" />
+        </div>
+        <input
+          class="pnumclass"
+          type="number"
+          bind:value={players[selectedPlayerIndex].fellowshipNum}
+        />
+      </div>
+
+      <div class="field">
+        <div class="edit-image-container">
+          <img src="src/assets/Icons/XPIcon.webp" alt="XP Icon" class="edit-xp-icon" />
+        </div>
+        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].xpNum} />
+      </div>
+    </div>
+
+      <div class="popup-buttons">
+        <button on:click={savePlayer}>Save</button>
+        <button on:click={closePopup}>Cancel</button>
+      </div>
+    </div>
+  </div>
+{/if}
 
 <style>
   .pad {
@@ -173,5 +232,84 @@
   .xp-icon {
     width: 40px;
     height: 50px;
+  }
+
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .popup-content {
+    background-color: rgb(58, 55, 55);
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .field {
+    display: grid;
+    grid-template-columns: 50px auto; /* Fixed width for labels, auto width for inputs */
+    align-items: center; /* Vertically align items */
+    gap: 0.5rem; /* Add spacing between columns */
+  }
+
+  .pnumclass {
+    max-width: 70px; /* Ensure consistent input width */
+    text-align: center; /* Center-align input text */
+  }
+
+  .edit-image-container {
+    position: relative;
+    margin-right: 10px;
+  }
+
+  .edit-image-row {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+
+  .edit-xp-icon {
+    width: 45px;
+    height: 60px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: white;
+  }
+
+  .popup-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .popup-buttons button {
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  h3 {
+    color: whitesmoke;
+    align-self: center;
+    justify-self: center;
+    text-justify: center;
+  }
+
+  .popup-buttons button:hover {
+    background-color: #ddd;
   }
 </style>
