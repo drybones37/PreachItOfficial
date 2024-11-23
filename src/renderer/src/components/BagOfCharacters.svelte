@@ -1,11 +1,17 @@
 <script>
   import { onMount } from 'svelte'
-
-
-  let choosingPieces = true
   let bagSound
   let bagImgs = 'src/assets/BagOfCharac.webp'
   let bagImgAlt = 'Bag of characters'
+  let showAlert = false
+
+  let piecesList = [""]
+  let piecesSelectedList = [""]
+
+  function closeBag(){
+    showAlert = false
+  }
+
 
   function openBag() {
     // Play sound
@@ -15,15 +21,20 @@
   onMount(() => {
     bagSound = new Audio('src/assets/dice-roll-sound.mp3')
   })
-
-  function savePlayer() {
-    choosingPieces = false
-  }
-
-  function closePopup() {
-    choosingPieces = false
-  }
 </script>
+
+{#if showAlert}
+  <div class="custom-alert">
+    <div class="alert-content">
+      <p>Click the piece you want to add to the board.</p>
+      <wbr/>
+      <div class="alert-buttons">
+        <button on:click={closeBag}>Done</button>
+        <button on:click={closeBag}>Cancel</button>
+      </div>
+    </div>
+  </div>
+{/if}
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -31,61 +42,10 @@
   <!-- <div class="image-container"> -->
   <img src={bagImgs} alt={bagImgAlt} class="ops-card-cover" />
 </div>
-
-{#if choosingPieces}
-  <div class="popup">
-    <div class="popup-content">
-      <h3>Click Character to Add to Board</h3>
-      <div class="edit-image-row">
-      <div class="field">
-        <div class="edit-image-container">
-          <img src="src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="edit-xp-icon" />
-        </div>
-        <!-- Push images to draggle images list -->
-        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].bibleNum} />
-      </div>
-
-      <div class="field">
-        <div class="edit-image-container">
-          <img src="src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="edit-xp-icon" />
-        </div>
-        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].tractNum} />
-      </div>
-    </div>
-
-    <div class="edit-image-row">
-      <div class="field">
-        <div class="edit-image-container">
-          <img src="src/assets/Icons/FELLOWSHIPIcon.webp" alt="Fellowship Icon" class="edit-xp-icon" />
-        </div>
-        <input
-          class="pnumclass"
-          type="number"
-          bind:value={players[selectedPlayerIndex].fellowshipNum}
-        />
-      </div>
-
-      <div class="field">
-        <div class="edit-image-container">
-          <img src="src/assets/Icons/XPIcon.webp" alt="XP Icon" class="edit-xp-icon" />
-        </div>
-        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].xpNum} />
-      </div>
-    </div>
-
-      <div class="popup-buttons">
-        <button on:click={savePlayer}>Save</button>
-        <button on:click={closePopup}>Cancel</button>
-      </div>
-    </div>
-  </div>
-{/if}
-
 <style>
   img:active {
     transform: scale(0.95);
   }
-
   .card {
     display: flex;
     justify-content: space-evenly;
@@ -98,7 +58,6 @@
     padding-bottom: 10px;
     padding-left: 15px;
   }
-
   img {
     width: auto;
     height: 24vh;

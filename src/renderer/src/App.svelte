@@ -13,6 +13,7 @@
   import BagOfCharacters from './components/BagOfCharacters.svelte'
 
 
+
   let showAlert = false
 
   function newGame() {
@@ -25,7 +26,7 @@
   }
 
   function closeAlert() {
-    
+
     showAlert = false
   }
 
@@ -69,12 +70,13 @@
     <div class="left">
       <!-- Content for the left side 3/4 of screen -->
       <Board />
+      <BagOfCharacters />
+
       <!-- <DragNDrop/> -->
       <DiceCheckEx />
       <OpCard />
       <ArgCard />
       <Timer />
-      <BagOfCharacters />
     </div>
 
     <div class="right">
