@@ -6,7 +6,16 @@
   let showAlert = false
 
   let piecesList = [""]
-  let piecesSelectedList = [""]
+  let piecesSelectedList = ['src/assets/Charac/AfricanBlue.webp',      'src/assets/Charac/BruneteGreen.webp',      'src/assets/Charac/ManSuitGreen.webp',
+'src/assets/Charac/AfricanWomanRed.webp',  'src/assets/Charac/Brunette.webp',          'src/assets/Charac/MonacleMan.webp',
+'src/assets/Charac/AfricanYellow.webp',    'src/assets/Charac/BrunetteWomanRed.webp',  'src/assets/Charac/MonocleBlack.webp',
+'src/assets/Charac/AsianGirlYellow.webp',  'src/assets/Charac/Casandra.webp',          'src/assets/Charac/MonocleYellow.webp',
+'src/assets/Charac/AsianWoman.webp',       'src/assets/Charac/DirtyBlondeGreen.webp',  'src/assets/Charac/PinoyBlue.webp',
+'src/assets/Charac/BlondeManGreen.webp',   'src/assets/Charac/EbonyBlue.webp',         'src/assets/Charac/PinoyMan.webp',
+'src/assets/Charac/BlondeWomanRed.webp',   'src/assets/Charac/EbonyWoman.webp',        'src/assets/Charac/PinoyYellow.webp',
+'src/assets/Charac/BlondieBlue.webp',      'src/assets/Charac/ManRed.webp',            'src/assets/Charac/Rocker.webp',]
+
+
 
   function closeBag(){
     showAlert = false
