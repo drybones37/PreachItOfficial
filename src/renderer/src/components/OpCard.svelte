@@ -1,13 +1,18 @@
 <script>
 
-    // import { onMount } from 'svelte'
+    import { onMount } from 'svelte'
     
     let opCards = 'src/assets/OpCards/CoverUpright.webp'
     let opCardAlt = 'Op cards'
-  
-    // opCard = () => {
-    //     console.log('arg card clicked')
-    // }    
+    let cardSound
+
+    function opCard(){
+        cardSound.play()
+    }    
+
+    onMount(() => {
+    cardSound = new Audio('src/assets/SFX/flipcard.mp3')
+  })
   
     // Load the sound effect on mount
     // onMount(() => {
@@ -17,12 +22,16 @@
   
   <div class="card">
         <!-- <div class="image-container"> -->
-            <img src={opCards} alt={opCardAlt} class="ops-card-cover"/>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <img src={opCards} alt={opCardAlt} on:click={opCard} class="ops-card-cover" />
           <!-- </div> -->
           <!-- <div class="image-container"> -->
             <!-- <img src={argCards} alt={argCardAlt} class="ops-card-cover"/> -->
           <!-- </div> -->
   </div>
+
+  
   
   <style>
   

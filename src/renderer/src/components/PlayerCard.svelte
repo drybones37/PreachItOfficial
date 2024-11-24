@@ -1,4 +1,8 @@
 <script>
+  import { onMount } from "svelte";
+
+  let menuSound
+
   let editingPlayer = false
   let selectedPlayerIndex = 0
 
@@ -24,17 +28,20 @@
 
   function editPlayer(playerNum) {
     editingPlayer = true
+    menuSound.play()
 
     selectedPlayerIndex = playerNum
   }
 
-  function savePlayer() {
-    editingPlayer = false
-  }
+  
 
   function closePopup() {
     editingPlayer = false
   }
+
+  onMount(() => {
+    menuSound = new Audio('src/assets/SFX/menu.mp3')
+  })
 </script>
 
 <div class="controls">
@@ -131,8 +138,7 @@
     </div>
 
       <div class="popup-buttons">
-        <button on:click={savePlayer}>Save</button>
-        <button on:click={closePopup}>Cancel</button>
+        <button on:click={closePopup}>Done</button>
       </div>
     </div>
   </div>

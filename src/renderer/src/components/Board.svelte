@@ -1,40 +1,47 @@
 <script>
-  import DraggableImage from './DraggableImage.svelte';
-  let position = { x: 0, y: 0 };
-  let isPanning = false;
-  let lastMousePosition = null;
+  import DraggableImage from './DraggableImage.svelte'
 
-  let scale = .70; // Initial scale (100%)
+  import { piecesSelectedList } from './piecesStore';
 
-  window.addEventListener("mousedown", (event) => {
-    if (event.button === 2) {
-      isPanning = true;
-    }
+  let items = [];
+  piecesSelectedList.subscribe((list) => {
+    items = list;
   });
 
-  window.addEventListener("mouseup", (event) => {
-    if (event.button === 2) {
-      isPanning = false;
-    }
-  });
+  let position = { x: 0, y: 0 }
+  let isPanning = false
+  let lastMousePosition = null
 
-  
-  window.addEventListener("mousemove", (event) => {
+  let scale = 0.7 // Initial scale (100%)
+
+  window.addEventListener('mousedown', (event) => {
+    if (event.button === 2) {
+      isPanning = true
+    }
+  })
+
+  window.addEventListener('mouseup', (event) => {
+    if (event.button === 2) {
+      isPanning = false
+    }
+  })
+
+  window.addEventListener('mousemove', (event) => {
     if (isPanning && lastMousePosition) {
-      const deltaX = event.clientX - lastMousePosition.clientX;
-      const deltaY = event.clientY - lastMousePosition.clientY;
-      position.x += deltaX;
-      position.y += deltaY;
+      const deltaX = event.clientX - lastMousePosition.clientX
+      const deltaY = event.clientY - lastMousePosition.clientY
+      position.x += deltaX
+      position.y += deltaY
     }
-    lastMousePosition = event;
-  });
+    lastMousePosition = event
+  })
 
-  window.addEventListener("mouseup", () => {
-    lastMousePosition = null;
-  });
+  window.addEventListener('mouseup', () => {
+    lastMousePosition = null
+  })
 </script>
 
-<div class="image-container" > 
+<div class="image-container">
   <!-- on:wheel={zoom} -->
   <img
     class="preach-it-board"
@@ -42,10 +49,27 @@
     alt=""
     style="position: absolute; transform: scale({scale}) translate({position.x}px, {position.y}px); transition: transform 0.2s ease;"
   />
-
   <!-- Use the DraggableImage component with offsets to follow zoom and pan -->
-  <DraggableImage src="src/assets/Charac/AfricanBlue.webp" scale={scale} offsetX={position.x} offsetY={position.y} initialX={100} initialY={100} />
+  <!-- <DraggableImage
+    src="src/assets/Charac/AfricanBlue.webp"
+    {scale}
+    offsetX={position.x}
+    offsetY={position.y}
+    initialX={100}
+    initialY={100}
+  /> -->
 </div>
+
+{#each items as item}
+    <DraggableImage
+      src={item}
+      {scale}
+      offsetX={position.x}
+      offsetY={position.y}
+      initialX={100}
+      initialY={100}
+    />
+  {/each}
 
 <style>
   .image-container {
@@ -69,5 +93,4 @@
     transition: transform 0.2s ease;
     z-index: 0;
   }
-
 </style>

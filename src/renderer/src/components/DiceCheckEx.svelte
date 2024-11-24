@@ -6,6 +6,8 @@
   let currentDiceFace2 = 1
   let rolling = false // To simulate the rolling effect
   let rollSound
+  let rollSound2
+
 
   // Dice faces array (you can customize this with SVGs or images)
   const diceFaces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅']
@@ -37,7 +39,7 @@
       rolling = true
 
       // Play sound
-      rollSound.play()
+      rollSound2.play()
 
       // Simulate rolling effect
       const rollInterval = setInterval(() => {
@@ -54,7 +56,8 @@
 
   // Load the sound effect on mount
   onMount(() => {
-    rollSound = new Audio('src/assets/dice-roll-sound.mp3')
+    rollSound = new Audio('src/assets/SFX/dice-roll.mp3')
+    rollSound2 = new Audio('src/assets/SFX/dice-roll.mp3')
   })
 </script>
 

@@ -1,7 +1,21 @@
 <script>
+  import { onMount } from 'svelte'
+
   let timeInput = '0:30' // Initial input time
   let timer = null // To store the interval ID
   let isRunning = false // Flag to check if the timer is running
+  let alarmSound
+  let startButtonS
+  let stopButtonS
+  let tickingSound
+
+  onMount(() => {
+    alarmSound = new Audio('src/assets/SFX/timerOver.mp3')
+    tickingSound = new Audio('src/assets/SFX/timerWarning7sec.mp3')
+  
+    startButtonS = new Audio('src/assets/SFX/start.mp3')
+    stopButtonS = new Audio('src/assets/SFX/stop.mp3')
+  })
 
   // Parse the time string and convert it to total seconds
   function timeToSeconds(time) {
@@ -18,6 +32,7 @@
 
   // Start the timer
   function startTimer() {
+    startButtonS.play()
     if (isRunning) return // Avoid starting multiple intervals
     let totalSeconds = timeToSeconds(timeInput)
 
@@ -26,9 +41,14 @@
 
       timer = setInterval(() => {
         totalSeconds--
-        timeInput = formatTime(totalSeconds) // Update the input with countdown
+        timeInput = formatTime(totalSeconds)
+        
+        if (totalSeconds == 7){
+          tickingSound.play()
+        }
 
         if (totalSeconds <= 0) {
+          alarmSound.play()
           clearInterval(timer)
           isRunning = false
           // TODO: Trigger "time is up" event!
@@ -39,6 +59,7 @@
 
   // Stop the timer
   function stopTimer() {
+    stopButtonS.play()
     clearInterval(timer)
     isRunning = false
   }

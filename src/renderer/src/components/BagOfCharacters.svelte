@@ -1,37 +1,50 @@
 <script>
   import { onMount } from 'svelte'
+  import { piecesSelectedList } from './piecesStore';
+
+  let addBoardSound
   let bagSound
   let bagImgs = 'src/assets/BagOfCharac.webp'
   let bagImgAlt = 'Bag of characters'
   let showAlert = false
-  let selectionRow = [['src/assets/Charac/AfricanBlue.webp',
-    'src/assets/Charac/BruneteGreen.webp',
-    'src/assets/Charac/ManSuitGreen.webp',
-    'src/assets/Charac/AfricanWomanRed.webp',
-    'src/assets/Charac/Brunette.webp',
-    'src/assets/Charac/MonacleMan.webp',
-    'src/assets/Charac/AfricanYellow.webp',],
-    
-    ['src/assets/Charac/AfricanYellow.webp',
-    'src/assets/Charac/BrunetteWomanRed.webp',
-    'src/assets/Charac/MonocleBlack.webp',
-    'src/assets/Charac/AsianGirlYellow.webp',
-    'src/assets/Charac/Casandra.webp',
-    'src/assets/Charac/MonocleYellow.webp',],
-    
-    ['src/assets/Charac/AsianWoman.webp',
-    'src/assets/Charac/DirtyBlondeGreen.webp',
-    'src/assets/Charac/PinoyBlue.webp',
-    'src/assets/Charac/BlondeManGreen.webp',
-    'src/assets/Charac/EbonyBlue.webp',
-    'src/assets/Charac/PinoyMan.webp',],
-    
-    ['src/assets/Charac/BlondeWomanRed.webp',
-    'src/assets/Charac/EbonyWoman.webp',
-    'src/assets/Charac/PinoyYellow.webp',
-    'src/assets/Charac/BlondieBlue.webp',
-    'src/assets/Charac/ManRed.webp',
-    'src/assets/Charac/Rocker.webp']]
+  let selectionRow = [
+    [
+      'src/assets/Charac/AfricanBlue.webp',
+      'src/assets/Charac/BruneteGreen.webp',
+      'src/assets/Charac/ManSuitGreen.webp',
+      'src/assets/Charac/AfricanWomanRed.webp',
+      'src/assets/Charac/Brunette.webp',
+      'src/assets/Charac/MonacleMan.webp',
+      'src/assets/Charac/AfricanYellow.webp'
+    ],
+
+    [
+      'src/assets/Charac/AfricanYellow.webp',
+      'src/assets/Charac/BrunetteWomanRed.webp',
+      'src/assets/Charac/MonocleBlack.webp',
+      'src/assets/Charac/AsianGirlYellow.webp',
+      'src/assets/Charac/Casandra.webp',
+      'src/assets/Charac/MonocleYellow.webp'
+    ],
+
+    [
+      'src/assets/Charac/AsianWoman.webp',
+      'src/assets/Charac/DirtyBlondeGreen.webp',
+      'src/assets/Charac/PinoyBlue.webp',
+      'src/assets/Charac/BlondeManGreen.webp',
+      'src/assets/Charac/EbonyBlue.webp',
+      'src/assets/Charac/PinoyMan.webp'
+    ],
+
+    [
+      'src/assets/Charac/BlondeWomanRed.webp',
+      'src/assets/Charac/EbonyWoman.webp',
+      'src/assets/Charac/PinoyYellow.webp',
+      'src/assets/Charac/BlondieBlue.webp',
+      'src/assets/Charac/ManRed.webp',
+      'src/assets/Charac/Rocker.webp'
+    ]
+  ]
 
   // let piecesList = [
   //   'src/assets/Charac/AfricanBlue.webp',
@@ -63,32 +76,10 @@
   //   'src/assets/Charac/Rocker.webp'
   // ]
 
-  // let piecesSelectedList = [
-  //   'src/assets/Charac/AfricanBlue.webp',
-  //   'src/assets/Charac/BruneteGreen.webp',
-  //   'src/assets/Charac/ManSuitGreen.webp',
-  //   'src/assets/Charac/AfricanWomanRed.webp',
-  //   'src/assets/Charac/Brunette.webp',
-  //   'src/assets/Charac/MonacleMan.webp',
-  //   'src/assets/Charac/AfricanYellow.webp',
-  //   'src/assets/Charac/BrunetteWomanRed.webp',
-  //   'src/assets/Charac/MonocleBlack.webp',
-  //   'src/assets/Charac/AsianGirlYellow.webp',
-  //   'src/assets/Charac/Casandra.webp',
-  //   'src/assets/Charac/MonocleYellow.webp',
-  //   'src/assets/Charac/AsianWoman.webp',
-  //   'src/assets/Charac/DirtyBlondeGreen.webp',
-  //   'src/assets/Charac/PinoyBlue.webp',
-  //   'src/assets/Charac/BlondeManGreen.webp',
-  //   'src/assets/Charac/EbonyBlue.webp',
-  //   'src/assets/Charac/PinoyMan.webp',
-  //   'src/assets/Charac/BlondeWomanRed.webp',
-  //   'src/assets/Charac/EbonyWoman.webp',
-  //   'src/assets/Charac/PinoyYellow.webp',
-  //   'src/assets/Charac/BlondieBlue.webp',
-  //   'src/assets/Charac/ManRed.webp',
-  //   'src/assets/Charac/Rocker.webp'
-  // ]
+    function addToBoard(src) {
+    addBoardSound.play()
+    piecesSelectedList.update((list) => [...list, src]);
+  }
 
   function closeBag() {
     showAlert = false
@@ -101,7 +92,8 @@
   }
   // Load the sound effect on mount
   onMount(() => {
-    bagSound = new Audio('src/assets/dice-roll-sound.mp3')
+    addBoardSound = new Audio('src/assets/SFX/piecePop.mp3')
+    bagSound = new Audio('src/assets/SFX/charac-bag.mp3')
   })
 </script>
 
@@ -112,39 +104,81 @@
       <wbr />
       <div class="pad">
         {#each selectionRow as Row}
-        <div class="player-card">
-          <div class="card-content">
+          <div class="player-card">
+            <div class="card-content">
               <div class="image-row">
                 <div class="image-container">
-                  <img src={Row[0]} alt="Character card" class="xp-icon" />
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                  <img
+                    src={Row[0]}
+                    alt="Character card"
+                    class="xp-icon"
+                    on:click={() => addToBoard(Row[0])}
+                  />
                 </div>
                 <div class="image-container">
-                  <img src={Row[1]} alt="Character card" class="xp-icon" />
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                  <img
+                    src={Row[1]}
+                    alt="Character card"
+                    class="xp-icon"
+                    on:click={() => addToBoard(Row[1])}
+                  />
                 </div>
                 <div class="image-container">
-                  <img src={Row[2]} alt="Character card" class="xp-icon" />
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                  <img
+                    src={Row[2]}
+                    alt="Character card"
+                    class="xp-icon"
+                    on:click={() => addToBoard(Row[2])}
+                  />
                 </div>
                 <div class="image-container">
-                  <img src={Row[3]} alt="Character card" class="xp-icon" />
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                  <img
+                    src={Row[3]}
+                    alt="Character card"
+                    class="xp-icon"
+                    on:click={() => addToBoard(Row[3])}
+                  />
                 </div>
                 <div class="image-container">
-                  <img src={Row[4]} alt="Character card" class="xp-icon" />
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                  <img
+                    src={Row[4]}
+                    alt="Character card"
+                    class="xp-icon"
+                    on:click={() => addToBoard(Row[4])}
+                  />
                 </div>
+
                 <div class="image-container">
-                  <img src={Row[5]} alt="Character card" class="xp-icon" />
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                  <img
+                    src={Row[5]}
+                    alt="Character card"
+                    class="xp-icon"
+                    on:click={() => addToBoard(Row[5])}
+                  />
                 </div>
               </div>
+            </div>
           </div>
-        </div>
         {/each}
         <div class="alert-buttons">
-          <button on:click={closeBag}>Done</button>
+          <button on:click={closeBag}>Finished</button>
           <button on:click={closeBag}>Cancel</button>
         </div>
       </div>
     </div>
   </div>
-  
 {/if}
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -177,8 +211,8 @@
   }
 
   .player-card {
-    
     padding-top: 6px;
+
     border-radius: 10px;
     margin-bottom: 10px;
   }
@@ -203,6 +237,7 @@
     width: 50px;
     height: 50px;
     border-radius: 4px;
+    /* border: 1px solid #ccc; */
   }
 
   .custom-alert {
