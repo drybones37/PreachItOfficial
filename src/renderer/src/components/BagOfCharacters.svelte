@@ -33,35 +33,35 @@
     'src/assets/Charac/ManRed.webp',
     'src/assets/Charac/Rocker.webp']]
 
-  let piecesList = [
-    'src/assets/Charac/AfricanBlue.webp',
-    'src/assets/Charac/BruneteGreen.webp',
-    'src/assets/Charac/ManSuitGreen.webp',
-    'src/assets/Charac/AfricanWomanRed.webp',
-    'src/assets/Charac/Brunette.webp',
-    'src/assets/Charac/MonacleMan.webp',
+  // let piecesList = [
+  //   'src/assets/Charac/AfricanBlue.webp',
+  //   'src/assets/Charac/BruneteGreen.webp',
+  //   'src/assets/Charac/ManSuitGreen.webp',
+  //   'src/assets/Charac/AfricanWomanRed.webp',
+  //   'src/assets/Charac/Brunette.webp',
+  //   'src/assets/Charac/MonacleMan.webp',
 
-    'src/assets/Charac/AfricanYellow.webp',
-    'src/assets/Charac/BrunetteWomanRed.webp',
-    'src/assets/Charac/MonocleBlack.webp',
-    'src/assets/Charac/AsianGirlYellow.webp',
-    'src/assets/Charac/Casandra.webp',
-    'src/assets/Charac/MonocleYellow.webp',
+  //   'src/assets/Charac/AfricanYellow.webp',
+  //   'src/assets/Charac/BrunetteWomanRed.webp',
+  //   'src/assets/Charac/MonocleBlack.webp',
+  //   'src/assets/Charac/AsianGirlYellow.webp',
+  //   'src/assets/Charac/Casandra.webp',
+  //   'src/assets/Charac/MonocleYellow.webp',
 
-    'src/assets/Charac/AsianWoman.webp',
-    'src/assets/Charac/DirtyBlondeGreen.webp',
-    'src/assets/Charac/PinoyBlue.webp',
-    'src/assets/Charac/BlondeManGreen.webp',
-    'src/assets/Charac/EbonyBlue.webp',
-    'src/assets/Charac/PinoyMan.webp',
+  //   'src/assets/Charac/AsianWoman.webp',
+  //   'src/assets/Charac/DirtyBlondeGreen.webp',
+  //   'src/assets/Charac/PinoyBlue.webp',
+  //   'src/assets/Charac/BlondeManGreen.webp',
+  //   'src/assets/Charac/EbonyBlue.webp',
+  //   'src/assets/Charac/PinoyMan.webp',
 
-    'src/assets/Charac/BlondeWomanRed.webp',
-    'src/assets/Charac/EbonyWoman.webp',
-    'src/assets/Charac/PinoyYellow.webp',
-    'src/assets/Charac/BlondieBlue.webp',
-    'src/assets/Charac/ManRed.webp',
-    'src/assets/Charac/Rocker.webp'
-  ]
+  //   'src/assets/Charac/BlondeWomanRed.webp',
+  //   'src/assets/Charac/EbonyWoman.webp',
+  //   'src/assets/Charac/PinoyYellow.webp',
+  //   'src/assets/Charac/BlondieBlue.webp',
+  //   'src/assets/Charac/ManRed.webp',
+  //   'src/assets/Charac/Rocker.webp'
+  // ]
 
   // let piecesSelectedList = [
   //   'src/assets/Charac/AfricanBlue.webp',
@@ -108,7 +108,7 @@
 {#if showAlert}
   <div class="custom-alert">
     <div class="alert-content">
-      <p>Click the piece you want to add to the board.</p>
+      <p>Please click the piece you want to add to the board:</p>
       <wbr />
       <div class="pad">
         {#each selectionRow as Row}
@@ -137,13 +137,14 @@
           </div>
         </div>
         {/each}
+        <div class="alert-buttons">
+          <button on:click={closeBag}>Done</button>
+          <button on:click={closeBag}>Cancel</button>
+        </div>
       </div>
     </div>
   </div>
-  <div class="alert-buttons">
-    <button on:click={closeBag}>Done</button>
-    <button on:click={closeBag}>Cancel</button>
-  </div>
+  
 {/if}
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -176,9 +177,8 @@
   }
 
   .player-card {
-    background-color: #f7f7f7;
+    
     padding-top: 6px;
-    border: 1px solid #ddd;
     border-radius: 10px;
     margin-bottom: 10px;
   }
@@ -200,10 +200,9 @@
   }
 
   .xp-icon {
-    width: 35px;
+    width: 50px;
     height: 50px;
     border-radius: 4px;
-    border: 1px solid #ccc;
   }
 
   .custom-alert {
