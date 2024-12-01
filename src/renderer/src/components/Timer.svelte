@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
 
-  let timeInput = '0:30' // Initial input time
+  let timeInput = '2:00' // Initial input time
   let timer = null // To store the interval ID
   let isRunning = false // Flag to check if the timer is running
   let alarmSound
@@ -101,6 +101,7 @@
     position: absolute;
     bottom: 20px;
     left: 20px;
+    z-index: 999;
   }
 
   /* Style for the input (time field) */

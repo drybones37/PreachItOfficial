@@ -1,14 +1,19 @@
+<!-- TODO Add a bike icon for the player who gets a bike card -->
+<!-- TODO Add the privillages cards to the game -->
+
+
 <script>
   import { onMount } from 'svelte'
 
   let menuSound
   let inputSound
+  let downSound
 
   let editingPlayer = false
   let selectedPlayerIndex = 0
 
   let players = [
-    { name: 'Player 1', xpNum: 5, bibleNum: 0, tractNum: 8, fellowshipNum: 3, opCardsList: [] },
+    { name: 'Player 1', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
     { name: 'Player 2', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
     { name: 'Player 3', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
     { name: 'Player 4', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
@@ -19,17 +24,20 @@
   ]
 
   let playerCount = 2 // Default to showing 2 players
+  let previousValue = playerCount
 
   // Filter players based on the selected count
   $: visiblePlayers = players.slice(0, playerCount)
 
-  function psound() {
-    inputSound.play()
-  }
-
   function updatePlayerCount(count) {
-    console.log(count)
     playerCount = Math.max(2, Math.min(count, players.length)) // Ensure range is between 2 and the max players
+
+    if (playerCount > previousValue) {
+      psound() // Up button action
+    } else if (playerCount < previousValue) {
+      psoundDown() // Down button action
+    }
+    previousValue = playerCount
   }
 
   function editPlayer(playerNum) {
@@ -43,9 +51,18 @@
     editingPlayer = false
   }
 
+  function psound() {
+    inputSound.play()
+  }
+  function psoundDown() {
+    downSound.play()
+    // Add your sound logic here
+  }
+
   onMount(() => {
     menuSound = new Audio('src/assets/SFX/menu.mp3')
     inputSound = new Audio('src/assets/SFX/blip.mp3')
+    downSound = new Audio('src/assets/SFX/down.mp3')
   })
 </script>
 
@@ -56,11 +73,8 @@
     type="number"
     min="2"
     max={players.length}
-    value={playerCount}
-    on:input={(e) => {
-      updatePlayerCount(+e.target.value)
-      psound()
-    }}
+    bind:value={playerCount}
+    on:input={(e) => updatePlayerCount(+e.target.value)}
     style="width: 50px;"
   />
 </div>
@@ -108,7 +122,7 @@
 {#if editingPlayer}
   <div class="popup">
     <div class="popup-content">
-      <h3>Editing: {players[selectedPlayerIndex].name}</h3>
+      <h3 style="padding-bottom: 10px;">Editing: {players[selectedPlayerIndex].name}</h3>
       <div class="edit-image-row">
         <div class="field">
           <div class="edit-image-container">
@@ -274,7 +288,6 @@
   }
 
   .popup-content {
-    background-color: rgb(58, 55, 55);
     padding: 20px;
     border-radius: 10px;
     width: 400px;
@@ -282,6 +295,10 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 1rem;
+
+    background-color: rgb(36, 35, 35);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: rgb(255, 255, 255);
   }
 
   .field {
@@ -320,12 +337,18 @@
     margin-top: 15px;
     display: flex;
     justify-content: space-evenly;
+    gap: 10px;
+    /* padding-top: 10px; */
   }
 
   .popup-buttons button {
-    padding: 5px;
-    border: none;
+    padding: 10px 20px;
     cursor: pointer;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
   }
 
   h3 {
@@ -336,6 +359,6 @@
   }
 
   .popup-buttons button:hover {
-    background-color: #ddd;
+    background-color: #555;
   }
 </style>

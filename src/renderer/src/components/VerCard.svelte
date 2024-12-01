@@ -38,7 +38,7 @@
 {#if showAlert}
   <div class="custom-alert">
     <div class="alert-content">
-      <p>Please give the player 2 physical verse cards.</p>
+      <p>Give the player the amount of physical verse cards specified.</p>
       <p>Once you have done so click "okay".</p>
       <wbr/>
       <div class="alert-buttons">

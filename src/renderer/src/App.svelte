@@ -1,6 +1,5 @@
 <!-- TODO Add Opportunity functionality -->
-<!-- TODO Add Argument Card functionality -->
-<!-- TODO Add Memory Verse Card functionality -->
+
 
 
 <script>
@@ -65,7 +64,7 @@
     <button class="load-game-button" on:click={loadGame}> App Instructions </button>
     <button class="load-game-button" on:click={loadGame}> Game Rules </button>
     <button class="load-game-button" on:click={loadGame}> Rules Summary </button>
-    <button class="load-game-button" on:click={loadGame}> Remove Pieces </button>
+    <!-- <button class="load-game-button" on:click={loadGame}> Remove Pieces </button> -->
   </nav>
 
   <div class="display">
