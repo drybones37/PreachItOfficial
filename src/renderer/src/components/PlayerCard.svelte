@@ -1,16 +1,40 @@
 <!-- TODO Add a bike icon for the player who gets a bike card -->
 <!-- TODO Add the privillages cards to the game -->
 
-
 <script>
   import { onMount } from 'svelte'
 
   let menuSound
   let inputSound
   let downSound
+  let opSound
+  let showOpcard = false
+  let opCardAlt = 'Op cards'
 
   let editingPlayer = false
   let selectedPlayerIndex = 0
+
+  const opList = [
+    'src/assets/OpCards/CardB2.webp',
+    'src/assets/OpCards/CardB1.webp',
+    'src/assets/OpCards/CardPR1.webp',
+    'src/assets/OpCards/CardPR2.webp',
+    'src/assets/OpCards/CardPR4.webp'
+  ]
+
+  function opCard(playerNum) {
+    opSound.play()
+    showOpcard = true
+    selectedPlayerIndex = playerNum
+  }
+
+  function closeAlert() {
+    showOpcard = false
+  }
+
+  function saveCard() {
+    showOpcard = false
+  }
 
   let players = [
     { name: 'Player 1', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
@@ -63,6 +87,7 @@
     menuSound = new Audio('src/assets/SFX/menu.mp3')
     inputSound = new Audio('src/assets/SFX/blip.mp3')
     downSound = new Audio('src/assets/SFX/down.mp3')
+    opSound = new Audio('src/assets/SFX/opCard.mp3')
   })
 </script>
 
@@ -87,8 +112,17 @@
           <input class="name" placeholder="Name" bind:value={player.name} />
 
           <div class="image-container">
-            <img src="src/assets/OpCards/CoverUpright.webp" alt="Op Card" class="ops-card-cover" />
-            <span class="overlay-number">3</span>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y-no-static-element-interactions -->
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <img
+              src="src/assets/OpCards/CoverUpright.webp"
+              alt="Op Card"
+              class="ops-card-cover"
+              on:click={() => opCard(i)}
+            />
+
+            <span class="overlay-number">{player.opCardsList.length}</span>
           </div>
 
           <div class="image-container">
@@ -173,6 +207,31 @@
 
       <div class="popup-buttons">
         <button on:click={closePopup}>Done</button>
+      </div>
+    </div>
+  </div>
+{/if}
+
+{#if showOpcard}
+  <div class="custom-alert">
+    <div class="alert-content">
+      <!-- <p>{displayCard}</p> -->
+      <wbr />
+      <div class="image-row">
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <img src={opList[0]} alt={opCardAlt} class="edit-xp-icon" />
+        <img src={opList[1]} alt={opCardAlt} class="edit-xp-icon" />
+        <img src={opList[2]} alt={opCardAlt} class="edit-xp-icon" />
+        <img src={opList[3]} alt={opCardAlt} class="edit-xp-icon" />
+        <img src={opList[4]} alt={opCardAlt} class="edit-xp-icon" />
+      </div>
+      <div class="alert-buttons">
+        <button on:click={saveCard}>Keep</button>
+        <wbr />
+        <button on:click={closeAlert}>Finished</button>
+        <wbr />
+        <button on:click={closeAlert}>Cancel</button>
       </div>
     </div>
   </div>
