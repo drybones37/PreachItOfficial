@@ -1,7 +1,7 @@
-<!-- TODO add remaining -->
-<!-- TODO Evenly space items on the left -->
 <!-- TODO Add Opportunity functionality -->
- <!-- TODO Add Argument Card functionality -->
+<!-- TODO Add Argument Card functionality -->
+<!-- TODO Add Memory Verse Card functionality -->
+
 
 <script>
   import PlayerCard from './components/PlayerCard.svelte'
@@ -10,6 +10,8 @@
   import Timer from './components/Timer.svelte'
   import OpCard from './components/OpCard.svelte'
   import ArgCard from './components/ArgCard.svelte'
+  import VerCard from './components/VerCard.svelte'
+
   import BagOfCharacters from './components/BagOfCharacters.svelte'
 
 
@@ -75,6 +77,7 @@
       <!-- <DragNDrop/> -->
       <DiceCheckEx />
       <OpCard />
+      <VerCard />
       <ArgCard />
       <Timer />
     </div>

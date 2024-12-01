@@ -1,4 +1,5 @@
 <script>
+  // import { onMount } from 'svelte'
   export let src // Image source
   export let initialX = 0 // Initial X position
   export let initialY = 0 // Initial Y position
@@ -6,11 +7,16 @@
   export let offsetX = 0 // Pan offset X
   export let offsetY = 0 // Pan offset Y
 
+  // let placeSound
   let isDragging = false
   let mouseOffset = { x: 0, y: 0 }
   let position = { x: initialX, y: initialY }
 
   // Triggered when mouse button is pressed on the image
+  // onMount(() => {
+  //   placeSound = new Audio('src/assets/SFX/flipcard.mp3')
+  // })
+
   function handleMouseDown(event) {
     isDragging = true
     mouseOffset = {

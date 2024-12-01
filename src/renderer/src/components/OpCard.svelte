@@ -11,7 +11,7 @@
     }    
 
     onMount(() => {
-    cardSound = new Audio('src/assets/SFX/flipcard.mp3')
+    cardSound = new Audio('src/assets/SFX/oportunity.mp3')
   })
   
     // Load the sound effect on mount

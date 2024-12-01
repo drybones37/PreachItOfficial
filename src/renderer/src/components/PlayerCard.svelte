@@ -1,7 +1,8 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount } from 'svelte'
 
   let menuSound
+  let inputSound
 
   let editingPlayer = false
   let selectedPlayerIndex = 0
@@ -22,7 +23,12 @@
   // Filter players based on the selected count
   $: visiblePlayers = players.slice(0, playerCount)
 
+  function psound() {
+    inputSound.play()
+  }
+
   function updatePlayerCount(count) {
+    console.log(count)
     playerCount = Math.max(2, Math.min(count, players.length)) // Ensure range is between 2 and the max players
   }
 
@@ -33,14 +39,13 @@
     selectedPlayerIndex = playerNum
   }
 
-  
-
   function closePopup() {
     editingPlayer = false
   }
 
   onMount(() => {
     menuSound = new Audio('src/assets/SFX/menu.mp3')
+    inputSound = new Audio('src/assets/SFX/blip.mp3')
   })
 </script>
 
@@ -52,7 +57,10 @@
     min="2"
     max={players.length}
     value={playerCount}
-    on:input={(e) => updatePlayerCount(+e.target.value)}
+    on:input={(e) => {
+      updatePlayerCount(+e.target.value)
+      psound()
+    }}
     style="width: 50px;"
   />
 </div>
@@ -102,40 +110,52 @@
     <div class="popup-content">
       <h3>Editing: {players[selectedPlayerIndex].name}</h3>
       <div class="edit-image-row">
-      <div class="field">
-        <div class="edit-image-container">
-          <img src="src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="edit-xp-icon" />
+        <div class="field">
+          <div class="edit-image-container">
+            <img src="src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="edit-xp-icon" />
+          </div>
+          <input
+            class="pnumclass"
+            type="number"
+            bind:value={players[selectedPlayerIndex].bibleNum}
+          />
         </div>
-        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].bibleNum} />
+
+        <div class="field">
+          <div class="edit-image-container">
+            <img src="src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="edit-xp-icon" />
+          </div>
+          <input
+            class="pnumclass"
+            type="number"
+            bind:value={players[selectedPlayerIndex].tractNum}
+          />
+        </div>
       </div>
 
-      <div class="field">
-        <div class="edit-image-container">
-          <img src="src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="edit-xp-icon" />
+      <div class="edit-image-row">
+        <div class="field">
+          <div class="edit-image-container">
+            <img
+              src="src/assets/Icons/FELLOWSHIPIcon.webp"
+              alt="Fellowship Icon"
+              class="edit-xp-icon"
+            />
+          </div>
+          <input
+            class="pnumclass"
+            type="number"
+            bind:value={players[selectedPlayerIndex].fellowshipNum}
+          />
         </div>
-        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].tractNum} />
-      </div>
-    </div>
 
-    <div class="edit-image-row">
-      <div class="field">
-        <div class="edit-image-container">
-          <img src="src/assets/Icons/FELLOWSHIPIcon.webp" alt="Fellowship Icon" class="edit-xp-icon" />
+        <div class="field">
+          <div class="edit-image-container">
+            <img src="src/assets/Icons/XPIcon.webp" alt="XP Icon" class="edit-xp-icon" />
+          </div>
+          <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].xpNum} />
         </div>
-        <input
-          class="pnumclass"
-          type="number"
-          bind:value={players[selectedPlayerIndex].fellowshipNum}
-        />
       </div>
-
-      <div class="field">
-        <div class="edit-image-container">
-          <img src="src/assets/Icons/XPIcon.webp" alt="XP Icon" class="edit-xp-icon" />
-        </div>
-        <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].xpNum} />
-      </div>
-    </div>
 
       <div class="popup-buttons">
         <button on:click={closePopup}>Done</button>
