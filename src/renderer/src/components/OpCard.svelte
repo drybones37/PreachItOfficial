@@ -87,7 +87,7 @@
 {#if showKeep}
   <div class="custom-alert-keep">
     <div class="alert-content">
-      <p>Read the card to see if it specifies if you can keep it.</p>
+      <p>Read card to see if it says you can keep it.</p>
       <!-- <p>{displayCard}</p> -->
       <wbr />
       <div class="image-row">
@@ -96,10 +96,10 @@
         <img src={disCard} alt={opCardAlt} class="imgalertCard"/>
       </div>
       <wbr />
-      <p>Click the opportunity card icon by your name.</p>
-      <p>Click the "Add card" button.</p>
-      <p>Select the card.</p>
-      <p>Click "Save".</p>
+      <h4>Instructions to keep card:</h4>
+      <h5>Click the opportunity card icon by your name.</h5>
+      <h5>Select the card.</h5>
+      <h5>Click the "Add" button.</h5>
       <div class="alert-buttons">
         <button on:click={closeKeep}>Okay</button>
         <wbr />

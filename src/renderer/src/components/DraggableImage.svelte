@@ -58,6 +58,7 @@
       left: {position.x}px;
       top: {position.y}px;
       transform: scale({scale}) translate({offsetX / scale}px, {offsetY / scale}px);
+      z-index:100;
     "
   on:mousedown={handleMouseDown}
 />
@@ -71,7 +72,7 @@
     max-height: 10%;
     cursor: grab;
     object-fit: cover;
-    z-index: 10;
+    z-index: 100;
     user-select: none; /* Disable text selection */
   }
   .draggable-image:active {

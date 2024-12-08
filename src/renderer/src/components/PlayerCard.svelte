@@ -50,7 +50,6 @@
     }
 
     showOpcard = false
-
   }
 
   function useCard(playerNum, card) {
@@ -127,66 +126,66 @@
   })
 </script>
 
-<div class="controls">
-  <label for="player-count">Select number of players:</label>
-  <input
-    id="player-count"
-    type="number"
-    min="2"
-    max={players.length}
-    bind:value={playerCount}
-    on:input={(e) => updatePlayerCount(+e.target.value)}
-    style="width: 50px;"
-  />
-</div>
+<div class="wrapper">
+  <div class="controls">
+    <label for="player-count">Select number of players:</label>
+    <input
+      id="player-count"
+      type="number"
+      min="2"
+      max={players.length}
+      bind:value={playerCount}
+      on:input={(e) => updatePlayerCount(+e.target.value)}
+      style="width: 50px;"
+    />
+  </div>
 
-<div class="pad">
-  {#each visiblePlayers as player, i}
-    <div class="player-card">
-      <div class="card-content">
-        <div class="image-row">
-          <input class="name" placeholder="Name" bind:value={player.name} />
+  <div class="pad">
+    {#each visiblePlayers as player, i}
+      <div class="player-card">
+        <div class="card-content">
+          <div class="image-row">
+            <input class="name" placeholder="Name" bind:value={player.name} />
 
-          <div class="image-container">
             <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div class="image-container">
+              <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+              <img
+                src="src/assets/OpCards/CoverUpright.webp"
+                alt="Op Card"
+                class="ops-card-cover"
+                on:click={() => opCard(i)}
+              />
+              <span class="overlay-number">{player.opCardsList.length}</span>
+            </div>
+
+            <div class="image-container">
+              <img src="src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="xp-icon" />
+              <span class="overlay-number">{player.bibleNum}</span>
+            </div>
+
+            <div class="image-container">
+              <img src="src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="xp-icon" />
+              <span class="overlay-number">{player.tractNum}</span>
+            </div>
+
+            <div class="image-container">
+              <img src="src/assets/Icons/FELLOWSHIPIcon.webp" alt="Fellowship Icon" class="xp-icon" />
+              <span class="overlay-number">{player.fellowshipNum}</span>
+            </div>
+
+            <div class="image-container">
+              <img src="src/assets/Icons/XPIcon.webp" alt="XP Icon" class="xp-icon" />
+              <span class="overlay-number">{player.xpNum}</span>
+            </div>
             <!-- svelte-ignore a11y-no-static-element-interactions -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <img
-              src="src/assets/OpCards/CoverUpright.webp"
-              alt="Op Card"
-              class="ops-card-cover"
-              on:click={() => opCard(i)}
-            />
-
-            <span class="overlay-number">{player.opCardsList.length}</span>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <span class="overlay-button" on:click={() => editPlayer(i)}>{'≡'}</span>
           </div>
-
-          <div class="image-container">
-            <img src="src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="xp-icon" />
-            <span class="overlay-number">{player.bibleNum}</span>
-          </div>
-
-          <div class="image-container">
-            <img src="src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="xp-icon" />
-            <span class="overlay-number">{player.tractNum}</span>
-          </div>
-
-          <div class="image-container">
-            <img src="src/assets/Icons/FELLOWSHIPIcon.webp" alt="Fellowship Icon" class="xp-icon" />
-            <span class="overlay-number">{player.fellowshipNum}</span>
-          </div>
-
-          <div class="image-container">
-            <img src="src/assets/Icons/XPIcon.webp" alt="XP Icon" class="xp-icon" />
-            <span class="overlay-number">{player.xpNum}</span>
-          </div>
-          <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <!-- svelte-ignore a11y-no-static-element-interactions -->
-          <span class="overlay-button" on:click={() => editPlayer(i)}>{'≡'}</span>
         </div>
       </div>
-    </div>
-  {/each}
+    {/each}
+  </div>
 </div>
 
 {#if editingPlayer}
@@ -249,15 +248,16 @@
 {/if}
 
 <!-- <div id="alert-container"> -->
-  {#if showOpcard}
+{#if showOpcard}
   <div class="custom-alert">
     <div class="alert-content">
+    <h3>Editing: {players[selectedPlayerIndex].name}</h3>
       <div class="image-row">
         {#each opList as card}
           <!-- Card Number Overlay -->
           <div class="image-container">
             <span class="overlayCardNum">
-              {players[selectedPlayerIndex].opCardsList.filter(c => c === card).length}
+              {players[selectedPlayerIndex].opCardsList.filter((c) => c === card).length}
             </span>
             <!-- Card Image -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -266,18 +266,26 @@
               src={card}
               alt="Card"
               class="card-ico-edit"
-              style="outline: {selectedCard === card ? '2px solid #00ff00' : 'none'}; box-sizing: border-box;"
+              style="outline: {selectedCard === card
+                ? '2px solid #00ff00'
+                : 'none'}; box-sizing: border-box;"
               on:click={() => (selectedCard = card)}
             />
           </div>
         {/each}
       </div>
-      
+
       <div class="alert-buttons">
-        <button on:click={() => saveCard(selectedPlayerIndex, selectedCard)} disabled={!selectedCard}>
+        <button
+          on:click={() => saveCard(selectedPlayerIndex, selectedCard)}
+          disabled={!selectedCard}
+        >
           Add
         </button>
-        <button on:click={() => useCard(selectedPlayerIndex, selectedCard)} disabled={!selectedCard}>
+        <button
+          on:click={() => useCard(selectedPlayerIndex, selectedCard)}
+          disabled={!selectedCard}
+        >
           Use
         </button>
         <button on:click={closeAlert}>Cancel</button>
@@ -294,40 +302,40 @@
   } */
 
   .overlayCardNum {
-  position: absolute;
-  top: 5px; /* Adjust as necessary */
-  left: 5px; /* Adjust as necessary */
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 2px 5px;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: bold;
-  text-align: center;
-}
+    position: absolute;
+    top: 5px; /* Adjust as necessary */
+    left: 5px; /* Adjust as necessary */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 5px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+  }
 
-.image-container {
-  position: relative; /* Ensure relative positioning for child elements */
-  display: inline-block;
-  margin: 5px;
-}
+  .image-container {
+    position: relative; /* Ensure relative positioning for child elements */
+    display: inline-block;
+    margin: 5px;
+  }
 
-.card-ico-edit {
-  display: block;
-  width: 100px; /* Adjust size */
-  aspect-ratio: 2/3;
-  border-radius: 4px;
-}
+  .card-ico-edit {
+    display: block;
+    width: 100px; /* Adjust size */
+    aspect-ratio: 2/3;
+    border-radius: 4px;
+  }
 
   .alert-buttons {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
     padding-top: 20px;
   }
 
   .alert-buttons button {
-    padding: 10px 20px;
+    padding: 10px 70px;
     cursor: pointer;
     background-color: #444;
     color: white;
@@ -350,17 +358,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1200;
+    z-index: 99999;
   }
 
   .alert-content {
     padding: 20px;
     border-radius: 10px;
-    display: list-item;
+    display:inline-flex;
     flex-direction: column;
     justify-content: space-evenly;
-    gap: 3rem;
-
     background-color: rgb(36, 35, 35);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     /* color: rgb(255, 255, 255); */
@@ -383,7 +389,7 @@
     background-color: #f7f7f7;
     padding-top: 6px;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-bottom: 10px;
   }
 
@@ -396,7 +402,7 @@
     font-size: 16px;
     background-color: rgba(0, 0, 0, 0);
     border: none;
-    width: 100px;
+    width: 50px;
     height: 30px;
     margin-right: 10px;
   }
@@ -480,7 +486,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1200;
+    z-index: 99999;
   }
 
   .popup-content {

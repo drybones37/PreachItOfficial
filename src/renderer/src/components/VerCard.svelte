@@ -39,7 +39,7 @@
   <div class="custom-alert">
     <div class="alert-content">
       <p>Give the player the amount of physical verse cards specified.</p>
-      <p>Once you have done so click "okay".</p>
+      <p>Once you have done so click "Okay".</p>
       <wbr/>
       <div class="alert-buttons">
         <button on:click={closeAlert}>Okay</button>
@@ -116,10 +116,14 @@
     font-size: 15px;
   } */
 
-  .alert-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+  .alert-buttons button {
+    padding: 10px 70px;
+    cursor: pointer;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
   }
 
   .alert-buttons button {
@@ -128,7 +132,8 @@
   }
 
   .alert-buttons button:hover {
-    background-color: #ddd;
+    background-color: #555;
   }
+
 
 </style>

@@ -101,7 +101,7 @@
     position: absolute;
     bottom: 20px;
     left: 20px;
-    z-index: 800;
+    z-index: 999;
   }
 
   /* Style for the input (time field) */

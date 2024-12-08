@@ -72,6 +72,7 @@
   {/each}
 
 <style>
+  
   .image-container {
     position: relative;
     display: flex;
@@ -91,6 +92,5 @@
     height: auto;
     aspect-ratio: 1 / 1;
     transition: transform 0.2s ease;
-    z-index: 0;
   }
 </style>

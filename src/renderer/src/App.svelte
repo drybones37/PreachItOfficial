@@ -1,6 +1,8 @@
-<!-- TODO Add Opportunity functionality -->
-
-
+<!-- TODO Add Sound Effects -->
+<!-- TODO Add trains -->
+<!-- TODO add App Instructions -->
+<!-- TODO Add Game Rules -->
+<!-- TODO Add Rules Summary -->
 
 <script>
   import PlayerCard from './components/PlayerCard.svelte'
@@ -83,9 +85,9 @@
 
     <div class="right">
       <!-- Content for the right side 1/4th of screen-->
-      <div class="controls">
+      <!-- <div class="controls"> -->
         <PlayerCard />
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>
@@ -162,11 +164,10 @@
     height: 100vh; /* Full height of the viewport */
   }
 
-  .controls {
+  /* .controls {
     position: sticky;
-    /* top: 20px; */
-    /* right: 20px; */
-  }
+   
+  } */
 
   .left {
     flex: 3; /* Three parts of the screen */
@@ -176,6 +177,7 @@
   }
 
   .right {
+    position: relative;
     flex: 1; /* One part of the screen */
     background-color: lightcoral; /* For visual reference */
     height: 95vh;
@@ -195,4 +197,3 @@
     z-index: 1;
   }
 </style>
-
