@@ -101,7 +101,7 @@
     position: absolute;
     bottom: 20px;
     left: 20px;
-    z-index: 999;
+    z-index: 800;
   }
 
   /* Style for the input (time field) */
@@ -136,6 +136,7 @@
     color: rgb(0, 0, 0);
     border-radius: 5px;
     text-align: center;
+    
   }
 
   /* .start:hover, .stop:hover {

@@ -9,10 +9,11 @@
   let downSound
   let opSound
   let showOpcard = false
-  let opCardAlt = 'Op cards'
+  // let opCardAlt = 'Op cards'
 
   let editingPlayer = false
   let selectedPlayerIndex = 0
+  let selectedCard = null // Tracks the clicked card
 
   const opList = [
     'src/assets/OpCards/CardB2.webp',
@@ -26,13 +27,48 @@
     opSound.play()
     showOpcard = true
     selectedPlayerIndex = playerNum
+    selectedCard = null // Reset selected card
   }
 
   function closeAlert() {
     showOpcard = false
+    selectedCard = null // Clear the selection when closing
   }
 
-  function saveCard() {
+  // function selectCard(card) {
+  //   selectedCard = card // Update the selected card
+  // }
+
+  function saveCard(playerNum, card) {
+    if (players[playerNum]) {
+      players[playerNum] = {
+        ...players[playerNum],
+        opCardsList: [...players[playerNum].opCardsList, card]
+      }
+    } else {
+      console.error('Player not found!')
+    }
+
+    showOpcard = false
+
+  }
+
+  function useCard(playerNum, card) {
+    if (players[playerNum]) {
+      let cardRemoved = false // Flag to remove only one card
+      players[playerNum] = {
+        ...players[playerNum],
+        opCardsList: players[playerNum].opCardsList.filter((existingCard) => {
+          if (!cardRemoved && existingCard === card) {
+            cardRemoved = true // Mark as removed
+            return false // Exclude this card
+          }
+          return true // Keep all other cards
+        })
+      }
+    } else {
+      console.error('Player not found!')
+    }
     showOpcard = false
   }
 
@@ -212,32 +248,133 @@
   </div>
 {/if}
 
-{#if showOpcard}
+<!-- <div id="alert-container"> -->
+  {#if showOpcard}
   <div class="custom-alert">
     <div class="alert-content">
-      <!-- <p>{displayCard}</p> -->
-      <wbr />
       <div class="image-row">
-        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <img src={opList[0]} alt={opCardAlt} class="edit-xp-icon" />
-        <img src={opList[1]} alt={opCardAlt} class="edit-xp-icon" />
-        <img src={opList[2]} alt={opCardAlt} class="edit-xp-icon" />
-        <img src={opList[3]} alt={opCardAlt} class="edit-xp-icon" />
-        <img src={opList[4]} alt={opCardAlt} class="edit-xp-icon" />
+        {#each opList as card}
+          <!-- Card Number Overlay -->
+          <div class="image-container">
+            <span class="overlayCardNum">
+              {players[selectedPlayerIndex].opCardsList.filter(c => c === card).length}
+            </span>
+            <!-- Card Image -->
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <img
+              src={card}
+              alt="Card"
+              class="card-ico-edit"
+              style="outline: {selectedCard === card ? '2px solid #00ff00' : 'none'}; box-sizing: border-box;"
+              on:click={() => (selectedCard = card)}
+            />
+          </div>
+        {/each}
       </div>
+      
       <div class="alert-buttons">
-        <button on:click={saveCard}>Keep</button>
-        <wbr />
-        <button on:click={closeAlert}>Finished</button>
-        <wbr />
+        <button on:click={() => saveCard(selectedPlayerIndex, selectedCard)} disabled={!selectedCard}>
+          Add
+        </button>
+        <button on:click={() => useCard(selectedPlayerIndex, selectedCard)} disabled={!selectedCard}>
+          Use
+        </button>
         <button on:click={closeAlert}>Cancel</button>
       </div>
     </div>
   </div>
 {/if}
 
+<!-- </div> -->
+
 <style>
+  /* #alert-container {
+    
+  } */
+
+  .overlayCardNum {
+  position: absolute;
+  top: 5px; /* Adjust as necessary */
+  left: 5px; /* Adjust as necessary */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 2px 5px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.image-container {
+  position: relative; /* Ensure relative positioning for child elements */
+  display: inline-block;
+  margin: 5px;
+}
+
+.card-ico-edit {
+  display: block;
+  width: 100px; /* Adjust size */
+  aspect-ratio: 2/3;
+  border-radius: 4px;
+}
+
+  .alert-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 20px;
+  }
+
+  .alert-buttons button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+  }
+
+  .alert-buttons button:hover {
+    background-color: #555;
+  }
+
+  .custom-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1200;
+  }
+
+  .alert-content {
+    padding: 20px;
+    border-radius: 10px;
+    display: list-item;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 3rem;
+
+    background-color: rgb(36, 35, 35);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* color: rgb(255, 255, 255); */
+  }
+
+  .card-ico-edit {
+    width: 200px;
+    aspect-ratio: 2/3;
+    border-radius: 4px;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    /* background-color: white; */
+  }
+
   .pad {
     padding: 10px;
   }
@@ -343,7 +480,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1200;
   }
 
   .popup-content {
