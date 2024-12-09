@@ -14,6 +14,8 @@
   import VerCard from './components/VerCard.svelte'
 
   import BagOfCharacters from './components/BagOfCharacters.svelte'
+  // import Train1 from './components/Train1.svelte'
+  // import Train2 from './components/Train2.svelte'
 
 
 
@@ -76,6 +78,8 @@
       <BagOfCharacters />
 
       <!-- <DragNDrop/> -->
+       <!-- <Train1 />
+       <Train2 /> -->
       <DiceCheckEx />
       <OpCard />
       <VerCard />
