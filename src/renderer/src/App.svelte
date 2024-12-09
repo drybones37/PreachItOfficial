@@ -20,9 +20,14 @@
 
 
   let showAlert = false
+  let gameRulesSum = false
 
   function newGame() {
     showAlert = true
+  }
+
+  function gRulesS() {
+    gameRulesSum = true
   }
 
   function resetGameData() {
@@ -56,6 +61,19 @@
   </div>
 {/if}
 
+{#if gameRulesSum}
+  <div class="custom-alert">
+    <div class="alert-content">
+      <h3>Summary:</h3>
+      <wbr/>
+      <div class="alert-buttons">
+        <button on:click={resetGameData}>Yes</button>
+        <button on:click={closeAlert}>Cancel</button>
+      </div>
+    </div>
+  </div>
+{/if}
+
 <!-- {#if selectedNumber}
   <p>You selected: {selectedNumber}</p>
 {/if} -->
@@ -67,7 +85,7 @@
     <button class="load-game-button" on:click={loadGame}> Load Game </button>
     <button class="load-game-button" on:click={loadGame}> App Instructions </button>
     <button class="load-game-button" on:click={loadGame}> Game Rules </button>
-    <button class="load-game-button" on:click={loadGame}> Rules Summary </button>
+    <button class="load-game-button" on:click={gRulesS}> Rules Summary </button>
     <!-- <button class="load-game-button" on:click={loadGame}> Remove Pieces </button> -->
   </nav>
 
