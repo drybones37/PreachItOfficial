@@ -1,7 +1,7 @@
 <!-- TODO Add Sound Effects -->
-<!-- TODO Add trains -->
+<!-- TODO make the pieces appear on the board -->
 <!-- TODO add App Instructions -->
-<!-- TODO Add Game Rules -->
+<!-- TODO Add Game Rules? -->
 <!-- TODO Add Rules Summary -->
 
 <script>
@@ -14,12 +14,15 @@
   import VerCard from './components/VerCard.svelte'
 
   import BagOfCharacters from './components/BagOfCharacters.svelte'
+
+  import { rulesSummaryText } from './logic/RulesSummary.js'
+  import { ruleBookText } from './logic/RuleBook.js'
+
   // import Train1 from './components/Train1.svelte'
   // import Train2 from './components/Train2.svelte'
 
-
-
   let showAlert = false
+  let gameRuleBook = false
   let gameRulesSum = false
 
   function newGame() {
@@ -30,14 +33,19 @@
     gameRulesSum = true
   }
 
+  function gRuleBook() {
+    gameRuleBook = true
+  }
+
   function resetGameData() {
     // TODO Make a reset function that clears all game data
     showAlert = false
   }
 
   function closeAlert() {
-
     showAlert = false
+    gameRuleBook = false
+    gameRulesSum = false
   }
 
   function loadGame() {
@@ -52,7 +60,7 @@
     <div class="alert-content">
       <p>Are you sure you want to reset all game data?</p>
       <p>If so click "Yes".</p>
-      <wbr/>
+      <wbr />
       <div class="alert-buttons">
         <button on:click={resetGameData}>Yes</button>
         <button on:click={closeAlert}>Cancel</button>
@@ -65,14 +73,31 @@
   <div class="custom-alert">
     <div class="alert-content">
       <h3>Summary:</h3>
-      <wbr/>
-      <div class="alert-buttons">
-        <button on:click={resetGameData}>Yes</button>
-        <button on:click={closeAlert}>Cancel</button>
+      <div class="rules-summary">
+        <pre>{rulesSummaryText}</pre>
+      </div>
+      <div class="alert-buttons" style="padding-top: 15px;">
+        <button on:click={closeAlert}>Finished</button>
       </div>
     </div>
   </div>
 {/if}
+
+{#if gameRuleBook}
+  <div class="custom-alert">
+    <div class="alert-content">
+      <h3>PREACH IT! RULE BOOK:</h3>
+      <div class="rules-summary">
+        <pre>{ruleBookText}</pre>
+      </div>
+      <div class="alert-buttons" style="padding-top: 15px;">
+        <button on:click={closeAlert}>Finished</button>
+      </div>
+    </div>
+  </div>
+{/if}
+
+
 
 <!-- {#if selectedNumber}
   <p>You selected: {selectedNumber}</p>
@@ -84,7 +109,7 @@
     <button class="new-game-button" on:click={newGame}> New Game </button>
     <button class="load-game-button" on:click={loadGame}> Load Game </button>
     <button class="load-game-button" on:click={loadGame}> App Instructions </button>
-    <button class="load-game-button" on:click={loadGame}> Game Rules </button>
+    <button class="load-game-button" on:click={gRuleBook}> Game Rules </button>
     <button class="load-game-button" on:click={gRulesS}> Rules Summary </button>
     <!-- <button class="load-game-button" on:click={loadGame}> Remove Pieces </button> -->
   </nav>
@@ -96,7 +121,7 @@
       <BagOfCharacters />
 
       <!-- <DragNDrop/> -->
-       <!-- <Train1 />
+      <!-- <Train1 />
        <Train2 /> -->
       <DiceCheckEx />
       <OpCard />
@@ -108,13 +133,29 @@
     <div class="right">
       <!-- Content for the right side 1/4th of screen-->
       <!-- <div class="controls"> -->
-        <PlayerCard />
+      <PlayerCard />
       <!-- </div> -->
     </div>
   </div>
 </div>
 
 <style>
+  .rules-summary {
+  text-align: left;
+  width: 65vw; /* Set width to 75% of the screen */
+  max-height: 70vh; /* Limit the height to 60% of the viewport height */
+  overflow-x: auto; /* Add a vertical scroll bar if content overflows */
+  margin: 0 auto; /* Center the div horizontally */
+  padding: 10px; /* Add some padding */
+  background-color: #484646; /* Optional: Add a background color for better visibility */
+  color: #fff; /* Text color */
+  border: 1px solid #444; /* Optional: Add a border for separation */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  word-wrap: break-word; /* Ensure long words wrap to the next line */
+  white-space: pre-wrap; /* Preserve whitespace but allow wrapping */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle shadow */
+}
+
   /* General button styles */
   .new-game-button,
   .load-game-button,
