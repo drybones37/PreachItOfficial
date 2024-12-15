@@ -71,7 +71,7 @@
     showOpcard = false
   }
 
-  let players = [
+ let players = [
     { name: 'Player 1', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
     { name: 'Player 2', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
     { name: 'Player 3', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
@@ -80,7 +80,8 @@
     { name: 'Player 6', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
     { name: 'Player 7', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] },
     { name: 'Player 8', xpNum: 0, bibleNum: 0, tractNum: 0, fellowshipNum: 0, opCardsList: [] }
-  ]
+ ]
+
 
   let playerCount = 2 // Default to showing 2 players
   let previousValue = playerCount

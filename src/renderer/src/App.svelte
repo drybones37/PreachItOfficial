@@ -1,3 +1,4 @@
+
 <!-- TODO Add Sound Effects -->
 <!-- TODO make the pieces appear on the board -->
 <!-- TODO add App Instructions -->
@@ -17,57 +18,62 @@
 
   import { rulesSummaryText } from './logic/RulesSummary.js'
   import { ruleBookText } from './logic/RuleBook.js'
-
+  import { appText } from './logic/Appinstruct.js'
+  import { onMount } from 'svelte'
   // import Train1 from './components/Train1.svelte'
   // import Train2 from './components/Train2.svelte'
 
-  let showAlert = false
+  // let showAlert = false
   let gameRuleBook = false
   let gameRulesSum = false
+  let appInstructions  = false
+  let saveGameNotifier  = false
 
-  function newGame() {
-    showAlert = true
-  }
+  
+  let cardSound
+
+  // function newGame() {
+  //   showAlert = true
+    
+  // }
 
   function gRulesS() {
     gameRulesSum = true
+    cardSound.play()
   }
 
+  
+
+  function appInstruct(){
+    appInstructions = true
+    cardSound.play()
+  }
+  
   function gRuleBook() {
     gameRuleBook = true
-  }
-
-  function resetGameData() {
-    // TODO Make a reset function that clears all game data
-    showAlert = false
-  }
+    cardSound.play()
+  } 
 
   function closeAlert() {
-    showAlert = false
+    // showAlert = false
     gameRuleBook = false
     gameRulesSum = false
+    saveGameNotifier = false
+    appInstructions = false
   }
 
-  function loadGame() {
-    // Add logic to load a saved game here
+  function saveGame() {
+    saveGameNotifier = true
+    cardSound.play()
   }
 
-  function saveGame() {}
+
+ onMount(() => {
+    cardSound = new Audio('src/assets/SFX/blip.mp3')
+  })
+  
 </script>
 
-{#if showAlert}
-  <div class="custom-alert">
-    <div class="alert-content">
-      <p>Are you sure you want to reset all game data?</p>
-      <p>If so click "Yes".</p>
-      <wbr />
-      <div class="alert-buttons">
-        <button on:click={resetGameData}>Yes</button>
-        <button on:click={closeAlert}>Cancel</button>
-      </div>
-    </div>
-  </div>
-{/if}
 
 {#if gameRulesSum}
   <div class="custom-alert">
@@ -91,13 +97,38 @@
         <pre>{ruleBookText}</pre>
       </div>
       <div class="alert-buttons" style="padding-top: 15px;">
-        <button on:click={closeAlert}>Finished</button>
+          <button on:click={closeAlert}>Finished</button>
       </div>
     </div>
   </div>
-{/if}
+  {/if}
 
 
+  {#if appInstructions}
+  <div class="custom-alert">
+      <div class="alert-content">
+	  <h3>App Instructions</h3>
+	  <div class="rules-summary">
+              <pre>{appText}</pre>
+	  </div>
+	  <div class="alert-buttons" style="padding-top: 15px;">
+              <button on:click={closeAlert}>Finished</button>
+	  </div>
+      </div>
+  </div>
+  {/if}
+
+  {#if saveGameNotifier}
+  <div class="custom-alert">
+      <div class="alert-content">
+	  <h3>Please Take a Screenshot of the Game</h3>
+
+	 	  <div class="alert-buttons" style="padding-top: 15px;">
+              <button on:click={closeAlert}>Okay</button>
+	  </div>
+      </div>
+  </div>
+  {/if}
 
 <!-- {#if selectedNumber}
   <p>You selected: {selectedNumber}</p>
@@ -106,9 +137,8 @@
 <div class="top">
   <nav class="top-bar">
     <button class="save-game-button" on:click={saveGame}> Save Game </button>
-    <button class="new-game-button" on:click={newGame}> New Game </button>
-    <button class="load-game-button" on:click={loadGame}> Load Game </button>
-    <button class="load-game-button" on:click={loadGame}> App Instructions </button>
+
+    <button class="load-game-button" on:click={appInstruct}> App Instructions </button>
     <button class="load-game-button" on:click={gRuleBook}> Game Rules </button>
     <button class="load-game-button" on:click={gRulesS}> Rules Summary </button>
     <!-- <button class="load-game-button" on:click={loadGame}> Remove Pieces </button> -->
@@ -157,7 +187,7 @@
 }
 
   /* General button styles */
-  .new-game-button,
+  
   .load-game-button,
   .save-game-button {
     background-color: #44444400;
@@ -169,7 +199,7 @@
     z-index: 1;
   }
 
-  .new-game-button:hover,
+  
   .load-game-button:hover,
   .save-game-button:hover {
     background-color: #555;
