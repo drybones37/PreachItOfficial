@@ -4,6 +4,7 @@
 
   let addBoardSound
   let bagSound
+  let closeSound
   let bagImgs = 'src/assets/BagOfCharac.webp'
   let bagImgAlt = 'Bag of characters'
   let showAlert = false
@@ -83,6 +84,7 @@
 
   function closeBag() {
     showAlert = false
+    closeSound.play()
   }
 
   function openBag() {
@@ -94,6 +96,7 @@
   onMount(() => {
     addBoardSound = new Audio('src/assets/SFX/piecePop.mp3')
     bagSound = new Audio('src/assets/SFX/charac-bag.mp3')
+    closeSound = new Audio('src/assets/SFX/cancel.mp3')
   })
 </script>
 
@@ -174,7 +177,6 @@
         {/each}
         <div class="alert-buttons">
           <button on:click={closeBag}>Finished</button>
-          <button on:click={closeBag}>Cancel</button>
         </div>
       </div>
     </div>

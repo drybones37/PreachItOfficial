@@ -8,6 +8,7 @@
   let showAlert = false
 
   let cardSound
+  let closeSound
 
   function verCard() {
     showAlert = true
@@ -15,12 +16,14 @@
   }
 
   function closeAlert() {
+    closeSound.play()
     showAlert = false
   }
 
   // Load the sound effect on mount
   onMount(() => {
-    cardSound = new Audio('src/assets/SFX/blip.mp3')
+    cardSound = new Audio('src/assets/SFX/notificationOther.mp3')
+    closeSound = new Audio('src/assets/SFX/cancel.mp3')
   })
 </script>
 

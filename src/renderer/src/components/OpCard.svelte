@@ -5,6 +5,7 @@
     let opCards = 'src/assets/OpCards/CoverUpright.webp'
     let opCardAlt = 'Op cards'
     let cardSound
+    let closeSound
     let showOpcard = false
     let disCard
 
@@ -31,19 +32,24 @@
 
     function closeAlert() {
     showOpcard = false
+    closeSound.play()
   }
 
   function saveCard(){
+    cardSound.play()
     showOpcard = false
     showKeep = true
+    
   }
 
   function closeKeep(){
     showKeep = false
+    closeSound.play()
   }
 
     onMount(() => {
     cardSound = new Audio('src/assets/SFX/opCard.mp3')
+    closeSound = new Audio('src/assets/SFX/cancel.mp3')
   })
   
     // Load the sound effect on mount
@@ -77,8 +83,7 @@
         <button on:click={saveCard}>Keep</button>
         <wbr />
         <button on:click={closeAlert}>Finished</button>
-        <wbr />
-        <button on:click={closeAlert}>Cancel</button>
+        
       </div>
     </div>
   </div>
@@ -102,8 +107,7 @@
       <h5>Click the "Add" button.</h5>
       <div class="alert-buttons">
         <button on:click={closeKeep}>Okay</button>
-        <wbr />
-        <button on:click={closeKeep}>Cancel</button>
+        
       </div>
     </div>
   </div>

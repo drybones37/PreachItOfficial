@@ -1,9 +1,7 @@
 
 <!-- TODO Add Sound Effects -->
-<!-- TODO make the pieces appear on the board -->
+<!-- TODO make the pieces appear on the board lower-->
 <!-- TODO add App Instructions -->
-<!-- TODO Add Game Rules? -->
-<!-- TODO Add Rules Summary -->
 
 <script>
   import PlayerCard from './components/PlayerCard.svelte'
@@ -20,8 +18,7 @@
   import { ruleBookText } from './logic/RuleBook.js'
   import { appText } from './logic/Appinstruct.js'
   import { onMount } from 'svelte'
-  // import Train1 from './components/Train1.svelte'
-  // import Train2 from './components/Train2.svelte'
+  
 
   // let showAlert = false
   let gameRuleBook = false
@@ -29,8 +26,9 @@
   let appInstructions  = false
   let saveGameNotifier  = false
 
-  
   let cardSound
+  let closeSound
+  
 
   // function newGame() {
   //   showAlert = true
@@ -60,6 +58,7 @@
     gameRulesSum = false
     saveGameNotifier = false
     appInstructions = false
+    closeSound.play()
   }
 
   function saveGame() {
@@ -70,6 +69,7 @@
 
  onMount(() => {
     cardSound = new Audio('src/assets/SFX/blip.mp3')
+    closeSound = new Audio('src/assets/SFX/cancel.mp3')
   })
   
 </script>

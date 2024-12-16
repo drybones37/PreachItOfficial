@@ -8,6 +8,9 @@
   let inputSound
   let downSound
   let opSound
+  let addSound
+  let useSound
+  let closeSound
   let showOpcard = false
   // let opCardAlt = 'Op cards'
 
@@ -33,6 +36,7 @@
   function closeAlert() {
     showOpcard = false
     selectedCard = null // Clear the selection when closing
+    closeSound.play()
   }
 
   // function selectCard(card) {
@@ -48,7 +52,7 @@
     } else {
       console.error('Player not found!')
     }
-
+    addSound.play()
     showOpcard = false
   }
 
@@ -59,6 +63,7 @@
         ...players[playerNum],
         opCardsList: players[playerNum].opCardsList.filter((existingCard) => {
           if (!cardRemoved && existingCard === card) {
+            useSound.play()
             cardRemoved = true // Mark as removed
             return false // Exclude this card
           }
@@ -68,6 +73,7 @@
     } else {
       console.error('Player not found!')
     }
+
     showOpcard = false
   }
 
@@ -108,6 +114,7 @@
   }
 
   function closePopup() {
+    closeSound.play()
     editingPlayer = false
   }
 
@@ -124,6 +131,9 @@
     inputSound = new Audio('src/assets/SFX/blip.mp3')
     downSound = new Audio('src/assets/SFX/down.mp3')
     opSound = new Audio('src/assets/SFX/opCard.mp3')
+    addSound = new Audio('src/assets/SFX/add.mp3')
+    useSound = new Audio('src/assets/SFX/use.mp3')
+    closeSound = new Audio('src/assets/SFX/cancel.mp3')
   })
 </script>
 

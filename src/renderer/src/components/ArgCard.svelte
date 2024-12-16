@@ -16,6 +16,7 @@
   
 
   let cardSound
+  let closeSound
 
   function argCard() {
     showAlertarg = true
@@ -27,6 +28,7 @@
   // Load the sound effect on mount
   onMount(() => {
     cardSound = new Audio('src/assets/SFX/flipcard.mp3')
+    closeSound = new Audio('src/assets/SFX/cancel.mp3')
   })
 
   const orangeList = [
@@ -225,6 +227,7 @@
   function closeAlert() {
     showAlertspec = false
     showAlertarg = false
+    closeSound.play()
   }
 </script>
 
