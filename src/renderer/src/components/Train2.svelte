@@ -10,7 +10,7 @@
   // let placeSound
   let isDragging = false
   let mouseOffset = { x: 0, y: 0 }
-  let position = { x: initialX, y: initialY }
+  let position = { x: 400, y: initialY }
 
   // Triggered when mouse button is pressed on the image
   // onMount(() => {
@@ -28,6 +28,7 @@
     event.preventDefault()
   }
 
+  
   // Updates the position while dragging
   function handleMouseMove(event) {
     if (isDragging) {

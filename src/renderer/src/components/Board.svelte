@@ -85,8 +85,8 @@
     {scale}
     offsetX={position.x}
     offsetY={position.y}
-    initialX={100}
-    initialY={100}
+    initialX={90}
+    initialY={50}
   />
 {/each}
 

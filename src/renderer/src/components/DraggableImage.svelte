@@ -10,13 +10,14 @@
   // let placeSound
   let isDragging = false
   let mouseOffset = { x: 0, y: 0 }
-  let position = { x: initialX, y: initialY }
+  let position = { x: 0, y: 200 }
 
   // Triggered when mouse button is pressed on the image
   // onMount(() => {
   //   placeSound = new Audio('src/assets/SFX/flipcard.mp3')
   // })
 
+  
   function handleMouseDown(event) {
     isDragging = true
     mouseOffset = {
@@ -65,11 +66,14 @@
 
 <style>
   .draggable-image {
+   
     position: absolute;
+
+    align-content: center;
     width: auto;
     height: auto;
-    max-width: 10%;
-    max-height: 10%;
+    max-width: 10vw;
+    max-height: 10vh;
     cursor: grab;
     object-fit: cover;
     z-index: 100;

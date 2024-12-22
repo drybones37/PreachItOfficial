@@ -9,7 +9,8 @@
     let showOpcard = false
     let disCard
 
-    let showKeep = false
+  let showKeep = false
+  
 
     const opList = [
 "src/assets/OpCards/CardB10.webp",  "src/assets/OpCards/CardB8.webp",    "src/assets/OpCards/CardBQ6.webp",  "src/assets/OpCards/CardC7.webp",  "src/assets/OpCards/CardKN1.webp",  "src/assets/OpCards/CardM3.webp",   "src/assets/OpCards/CardST1.webp",  "src/assets/OpCards/CardT7.webp",
