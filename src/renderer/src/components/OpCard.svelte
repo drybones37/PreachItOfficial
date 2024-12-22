@@ -2,7 +2,7 @@
 
     import { onMount } from 'svelte'
     
-    let opCards = 'src/assets/OpCards/CoverUpright.webp'
+    let opCards = './src/assets/OpCards/CoverUpright.webp'
     let opCardAlt = 'Op cards'
     let cardSound
     let closeSound
@@ -13,16 +13,16 @@
   
 
     const opList = [
-"src/assets/OpCards/CardB10.webp",  "src/assets/OpCards/CardB8.webp",    "src/assets/OpCards/CardBQ6.webp",  "src/assets/OpCards/CardC7.webp",  "src/assets/OpCards/CardKN1.webp",  "src/assets/OpCards/CardM3.webp",   "src/assets/OpCards/CardST1.webp",  "src/assets/OpCards/CardT7.webp",
-"src/assets/OpCards/CardB11.webp",  "src/assets/OpCards/CardB9.webp",    "src/assets/OpCards/CardBQ7.webp",  "src/assets/OpCards/CardC8.webp",  "src/assets/OpCards/CardKN2.webp",  "src/assets/OpCards/CardM4.webp",   "src/assets/OpCards/CardST2.webp",  "src/assets/OpCards/CardT8.webp",
-"src/assets/OpCards/CardB12.webp",  "src/assets/OpCards/CardBQ10.webp",  "src/assets/OpCards/CardBQ8.webp",  "src/assets/OpCards/CardD1.webp",  "src/assets/OpCards/CardKN3.webp",  "src/assets/OpCards/CardP1.webp",   "src/assets/OpCards/CardST3.webp", 
-"src/assets/OpCards/CardB1.webp",   "src/assets/OpCards/CardBQ11.webp",  "src/assets/OpCards/CardBQ9.webp",  "src/assets/OpCards/CardD2.webp",  "src/assets/OpCards/CardKN4.webp",  "src/assets/OpCards/CardP2.webp",   "src/assets/OpCards/CardST4.webp",
-"src/assets/OpCards/CardB2.webp",   "src/assets/OpCards/CardBQ12.webp",  "src/assets/OpCards/CardC1.webp",   "src/assets/OpCards/CardD3.webp",  "src/assets/OpCards/CardKN5.webp",  "src/assets/OpCards/CardP3.webp",   "src/assets/OpCards/CardT1.webp",
-"src/assets/OpCards/CardB3.webp",   "src/assets/OpCards/CardBQ1.webp",   "src/assets/OpCards/CardC2.webp",   "src/assets/OpCards/CardD4.webp",  "src/assets/OpCards/CardKN6.webp",  "src/assets/OpCards/CardP4.webp",   "src/assets/OpCards/CardT2.webp",
-"src/assets/OpCards/CardB4.webp",   "src/assets/OpCards/CardBQ2.webp",   "src/assets/OpCards/CardC3.webp",   "src/assets/OpCards/CardD5.webp",  "src/assets/OpCards/CardKN7.webp",  "src/assets/OpCards/CardPR1.webp",  "src/assets/OpCards/CardT3.webp",
-"src/assets/OpCards/CardB5.webp",   "src/assets/OpCards/CardBQ3.webp",   "src/assets/OpCards/CardC4.webp",   "src/assets/OpCards/CardD6.webp",  "src/assets/OpCards/CardKN8.webp",  "src/assets/OpCards/CardPR2.webp",  "src/assets/OpCards/CardT4.webp",
-"src/assets/OpCards/CardB6.webp",   "src/assets/OpCards/CardBQ4.webp",   "src/assets/OpCards/CardC5.webp",   "src/assets/OpCards/CardD7.webp",  "src/assets/OpCards/CardM1.webp",   "src/assets/OpCards/CardPR3.webp",  "src/assets/OpCards/CardT5.webp",
-"src/assets/OpCards/CardB7.webp",   "src/assets/OpCards/CardBQ5.webp",   "src/assets/OpCards/CardC6.webp",   "src/assets/OpCards/CardD8.webp",  "src/assets/OpCards/CardM2.webp",   "src/assets/OpCards/CardPR4.webp",  "src/assets/OpCards/CardT6.webp",
+"./src/assets/OpCards/CardB10.webp",  "./src/assets/OpCards/CardB8.webp",    "./src/assets/OpCards/CardBQ6.webp",  "./src/assets/OpCards/CardC7.webp",  "./src/assets/OpCards/CardKN1.webp",  "./src/assets/OpCards/CardM3.webp",   "./src/assets/OpCards/CardST1.webp",  "./src/assets/OpCards/CardT7.webp",
+"./src/assets/OpCards/CardB11.webp",  "./src/assets/OpCards/CardB9.webp",    "./src/assets/OpCards/CardBQ7.webp",  "./src/assets/OpCards/CardC8.webp",  "./src/assets/OpCards/CardKN2.webp",  "./src/assets/OpCards/CardM4.webp",   "./src/assets/OpCards/CardST2.webp",  "./src/assets/OpCards/CardT8.webp",
+"./src/assets/OpCards/CardB12.webp",  "./src/assets/OpCards/CardBQ10.webp",  "./src/assets/OpCards/CardBQ8.webp",  "./src/assets/OpCards/CardD1.webp",  "./src/assets/OpCards/CardKN3.webp",  "./src/assets/OpCards/CardP1.webp",   "./src/assets/OpCards/CardST3.webp", 
+"./src/assets/OpCards/CardB1.webp",   "./src/assets/OpCards/CardBQ11.webp",  "./src/assets/OpCards/CardBQ9.webp",  "./src/assets/OpCards/CardD2.webp",  "./src/assets/OpCards/CardKN4.webp",  "./src/assets/OpCards/CardP2.webp",   "./src/assets/OpCards/CardST4.webp",
+"./src/assets/OpCards/CardB2.webp",   "./src/assets/OpCards/CardBQ12.webp",  "./src/assets/OpCards/CardC1.webp",   "./src/assets/OpCards/CardD3.webp",  "./src/assets/OpCards/CardKN5.webp",  "./src/assets/OpCards/CardP3.webp",   "./src/assets/OpCards/CardT1.webp",
+"./src/assets/OpCards/CardB3.webp",   "./src/assets/OpCards/CardBQ1.webp",   "./src/assets/OpCards/CardC2.webp",   "./src/assets/OpCards/CardD4.webp",  "./src/assets/OpCards/CardKN6.webp",  "./src/assets/OpCards/CardP4.webp",   "./src/assets/OpCards/CardT2.webp",
+"./src/assets/OpCards/CardB4.webp",   "./src/assets/OpCards/CardBQ2.webp",   "./src/assets/OpCards/CardC3.webp",   "./src/assets/OpCards/CardD5.webp",  "./src/assets/OpCards/CardKN7.webp",  "./src/assets/OpCards/CardPR1.webp",  "./src/assets/OpCards/CardT3.webp",
+"./src/assets/OpCards/CardB5.webp",   "./src/assets/OpCards/CardBQ3.webp",   "./src/assets/OpCards/CardC4.webp",   "./src/assets/OpCards/CardD6.webp",  "./src/assets/OpCards/CardKN8.webp",  "./src/assets/OpCards/CardPR2.webp",  "./src/assets/OpCards/CardT4.webp",
+"./src/assets/OpCards/CardB6.webp",   "./src/assets/OpCards/CardBQ4.webp",   "./src/assets/OpCards/CardC5.webp",   "./src/assets/OpCards/CardD7.webp",  "./src/assets/OpCards/CardM1.webp",   "./src/assets/OpCards/CardPR3.webp",  "./src/assets/OpCards/CardT5.webp",
+"./src/assets/OpCards/CardB7.webp",   "./src/assets/OpCards/CardBQ5.webp",   "./src/assets/OpCards/CardC6.webp",   "./src/assets/OpCards/CardD8.webp",  "./src/assets/OpCards/CardM2.webp",   "./src/assets/OpCards/CardPR4.webp",  "./src/assets/OpCards/CardT6.webp",
     ]
 
     function opCard(){
@@ -49,13 +49,13 @@
   }
 
     onMount(() => {
-    cardSound = new Audio('src/assets/SFX/opCard.mp3')
-    closeSound = new Audio('src/assets/SFX/cancel.mp3')
+    cardSound = new Audio('./src/assets/SFX/opCard.mp3')
+    closeSound = new Audio('./src/assets/SFX/cancel.mp3')
   })
   
     // Load the sound effect on mount
     // onMount(() => {
-    //   cardSound = new Audio('src/assets/dice-roll-sound.mp3')
+    //   cardSound = new Audio('./src/assets/dice-roll-sound.mp3')
     // })
   </script>
   

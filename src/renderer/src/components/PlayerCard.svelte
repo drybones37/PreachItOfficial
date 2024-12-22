@@ -19,11 +19,11 @@
   let selectedCard = null // Tracks the clicked card
 
   const opList = [
-    'src/assets/OpCards/CardB2.webp',
-    'src/assets/OpCards/CardB1.webp',
-    'src/assets/OpCards/CardPR1.webp',
-    'src/assets/OpCards/CardPR2.webp',
-    'src/assets/OpCards/CardPR4.webp'
+    './src/assets/OpCards/CardB2.webp',
+    './src/assets/OpCards/CardB1.webp',
+    './src/assets/OpCards/CardPR1.webp',
+    './src/assets/OpCards/CardPR2.webp',
+    './src/assets/OpCards/CardPR4.webp'
   ]
 
   function opCard(playerNum) {
@@ -127,13 +127,13 @@
   }
 
   onMount(() => {
-    menuSound = new Audio('src/assets/SFX/menu.mp3')
-    inputSound = new Audio('src/assets/SFX/blip.mp3')
-    downSound = new Audio('src/assets/SFX/down.mp3')
-    opSound = new Audio('src/assets/SFX/opCard.mp3')
-    addSound = new Audio('src/assets/SFX/add.mp3')
-    useSound = new Audio('src/assets/SFX/use.mp3')
-    closeSound = new Audio('src/assets/SFX/cancel.mp3')
+    menuSound = new Audio('./src/assets/SFX/menu.mp3')
+    inputSound = new Audio('./src/assets/SFX/blip.mp3')
+    downSound = new Audio('./src/assets/SFX/down.mp3')
+    opSound = new Audio('./src/assets/SFX/opCard.mp3')
+    addSound = new Audio('./src/assets/SFX/add.mp3')
+    useSound = new Audio('./src/assets/SFX/use.mp3')
+    closeSound = new Audio('./src/assets/SFX/cancel.mp3')
   })
 </script>
 
@@ -162,7 +162,7 @@
             <div class="image-container">
               <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
               <img
-                src="src/assets/OpCards/CoverUpright.webp"
+                src="./src/assets/OpCards/CoverUpright.webp"
                 alt="Op Card"
                 class="ops-card-cover"
                 on:click={() => opCard(i)}
@@ -171,22 +171,22 @@
             </div>
 
             <div class="image-container">
-              <img src="src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="xp-icon" />
+              <img src="./src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="xp-icon" />
               <span class="overlay-number">{player.bibleNum}</span>
             </div>
 
             <div class="image-container">
-              <img src="src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="xp-icon" />
+              <img src="./src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="xp-icon" />
               <span class="overlay-number">{player.tractNum}</span>
             </div>
 
             <div class="image-container">
-              <img src="src/assets/Icons/FELLOWSHIPIcon.webp" alt="Fellowship Icon" class="xp-icon" />
+              <img src="./src/assets/Icons/FELLOWSHIPIcon.webp" alt="Fellowship Icon" class="xp-icon" />
               <span class="overlay-number">{player.fellowshipNum}</span>
             </div>
 
             <div class="image-container">
-              <img src="src/assets/Icons/XPIcon.webp" alt="XP Icon" class="xp-icon" />
+              <img src="./src/assets/Icons/XPIcon.webp" alt="XP Icon" class="xp-icon" />
               <span class="overlay-number">{player.xpNum}</span>
             </div>
             <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -206,7 +206,7 @@
       <div class="edit-image-row">
         <div class="field">
           <div class="edit-image-container">
-            <img src="src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="edit-xp-icon" />
+            <img src="./src/assets/Icons/BIBLEIcon.webp" alt="Bible Icon" class="edit-xp-icon" />
           </div>
           <input
             class="pnumclass"
@@ -217,7 +217,7 @@
 
         <div class="field">
           <div class="edit-image-container">
-            <img src="src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="edit-xp-icon" />
+            <img src="./src/assets/Icons/TRACTIcon.webp" alt="Tract Icon" class="edit-xp-icon" />
           </div>
           <input
             class="pnumclass"
@@ -231,7 +231,7 @@
         <div class="field">
           <div class="edit-image-container">
             <img
-              src="src/assets/Icons/FELLOWSHIPIcon.webp"
+              src="./src/assets/Icons/FELLOWSHIPIcon.webp"
               alt="Fellowship Icon"
               class="edit-xp-icon"
             />
@@ -245,7 +245,7 @@
 
         <div class="field">
           <div class="edit-image-container">
-            <img src="src/assets/Icons/XPIcon.webp" alt="XP Icon" class="edit-xp-icon" />
+            <img src="./src/assets/Icons/XPIcon.webp" alt="XP Icon" class="edit-xp-icon" />
           </div>
           <input class="pnumclass" type="number" bind:value={players[selectedPlayerIndex].xpNum} />
         </div>

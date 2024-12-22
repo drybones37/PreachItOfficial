@@ -1,7 +1,8 @@
 
-<!-- TODO make the pieces appear on the board lower-->
+<!-- TODO make the pieces appear on the board TODO
+  -->
 
-<!-- TODO Make trains appear more reasonably -->
+<!-- lower Make trains appear more reasonably -->
 
 <script>
   import PlayerCard from './components/PlayerCard.svelte'
@@ -69,8 +70,8 @@
   
 
  onMount(() => {
-    cardSound = new Audio('src/assets/SFX/blip.mp3')
-    closeSound = new Audio('src/assets/SFX/cancel.mp3')
+    cardSound = new Audio('./src/assets/SFX/blip.mp3')
+    closeSound = new Audio('./src/assets/SFX/cancel.mp3')
   })
   
 </script>

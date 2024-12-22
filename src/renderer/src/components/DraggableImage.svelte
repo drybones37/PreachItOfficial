@@ -1,8 +1,6 @@
 <script>
   // import { onMount } from 'svelte'
   export let src // Image source
-  export let initialX = 0 // Initial X position
-  export let initialY = 0 // Initial Y position
   export let scale = 1 // Scaling value
   export let offsetX = 0 // Pan offset X
   export let offsetY = 0 // Pan offset Y
