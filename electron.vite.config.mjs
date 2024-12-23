@@ -10,5 +10,6 @@ export default defineConfig({
   },
   renderer: {
     plugins: [svelte()]
-  }
+  },
+  // base: '/', // Use '/' for root deployment or adjust if deploying to a subdirectory
 })
