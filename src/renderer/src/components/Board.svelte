@@ -47,7 +47,7 @@
   <!-- on:wheel={zoom} -->
   <img
     class="preach-it-board"
-    src="./src/assets/PreachItBoard.webp"
+    src="/assets/PreachItBoard.webp"
     alt=""
     style="position: absolute; transform: scale({scale}) translate({position.x}px, {position.y}px); transition: transform 0.2s ease;"
   />

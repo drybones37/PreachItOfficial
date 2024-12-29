@@ -1,6 +1,6 @@
 <script>
   // import { onMount } from 'svelte'
-  export let src = "./src/assets/Trains/YellowTrain.webp"
+  export let src = "/assets/Trains/YellowTrain.webp"
   export let initialX = 0 // Initial X position
   export let initialY = 0 // Initial Y position
   export let scale = 1 // Scaling value
@@ -14,7 +14,7 @@
 
   // Triggered when mouse button is pressed on the image
   // onMount(() => {
-  //   placeSound = new Audio('./src/assets/SFX/flipcard.mp3')
+  //   placeSound = new Audio('/assets/SFX/flipcard.mp3')
   // })
 
   function handleMouseDown(event) {

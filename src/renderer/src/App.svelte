@@ -18,7 +18,7 @@
   import { rulesSummaryText } from './logic/RulesSummary.js'
   import { ruleBookText } from './logic/RuleBook.js'
   import { appText } from './logic/Appinstruct.js'
-  // import { onMount } from 'svelte'
+  import { onMount } from 'svelte'
 
   // Assets
   import blipSound from './assets/SFX/blip.mp3';
@@ -76,10 +76,10 @@
   }
   
 
-//  onMount(() => {
-//     cardSound = new Audio('./src/assets/SFX/blip.mp3')
-//     closeSound = new Audio('./src/assets/SFX/cancel.mp3')
-//   })
+ onMount(() => {
+    cardSound = new Audio('assets/SFX/blip.mp3')
+    closeSound = new Audio('assets/SFX/cancel.mp3')
+  })
   
 </script>
 

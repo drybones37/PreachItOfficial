@@ -1,9 +1,9 @@
 <script>
   import { onMount } from 'svelte'
 
-  // let opCards = './src/assets/OpCards/CoverUpright.webp'
+  // let opCards = '/assets/OpCards/CoverUpright.webp'
   // let opCardAlt = 'Op cards'
-  let verCards = './src/assets/VerCards/Vcard.webp'
+  let verCards = '/assets/VerCards/Vcard.webp'
   let verCardAlt = 'Verse card'
   let showAlert = false
 
@@ -22,8 +22,8 @@
 
   // Load the sound effect on mount
   onMount(() => {
-    cardSound = new Audio('./src/assets/SFX/notificationOther.mp3')
-    closeSound = new Audio('./src/assets/SFX/cancel.mp3')
+    cardSound = new Audio('/assets/SFX/notificationOther.mp3')
+    closeSound = new Audio('/assets/SFX/cancel.mp3')
   })
 </script>
 

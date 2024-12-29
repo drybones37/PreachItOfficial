@@ -1,9 +1,9 @@
 {
   "name": "preachitofficial",
   "version": "1.0.0",
-  "description": "An Electron application with Svelte",
+  "description": "The Preach It! Board game brought to you on your computer",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "JesusChristians.com",
   "homepage": "https://electron-vite.org",
   "scripts": {
     "format": "prettier --plugin prettier-plugin-svelte --write .",
@@ -35,5 +35,12 @@
     "prettier-plugin-svelte": "^3.2.5",
     "svelte": "^4.2.18",
     "vite": "^5.3.1"
-  }
+  },
+  "build": {
+  "files": [
+    "src/**/*",
+    "src/renderer/src/assets/**/*"
+  ]
+}
+
 }
