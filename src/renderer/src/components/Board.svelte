@@ -47,7 +47,7 @@
   <!-- on:wheel={zoom} -->
   <img
     class="preach-it-board"
-    src="/assets/PreachItBoard.webp"
+    src="./PreachItBoard.webp"
     alt=""
     style="position: absolute; transform: scale({scale}) translate({position.x}px, {position.y}px); transition: transform 0.2s ease;"
   />
@@ -70,7 +70,7 @@
   <!-- Use the DraggableImage component with offsets to follow zoom and pan -->
 </div>
 <!-- <DraggableImage
-    src="./src/assets/Trains/BlueTrain.webp"
+    src="./src./Trains/BlueTrain.webp"
     {scale}
     offsetX={position.x}
     offsetY={position.y}

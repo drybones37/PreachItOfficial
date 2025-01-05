@@ -56,8 +56,8 @@
 
   // Load the sound effect on mount
   onMount(() => {
-    rollSound = new Audio('/assets/SFX/dice-roll.mp3')
-    rollSound2 = new Audio('/assets/SFX/dice-roll.mp3')
+    rollSound = new Audio('./SFX/dice-roll.mp3')
+    rollSound2 = new Audio('./SFX/dice-roll.mp3')
   })
 </script>
 

@@ -21,8 +21,8 @@
   import { onMount } from 'svelte'
 
   // Assets
-  import blipSound from './assets/SFX/blip.mp3';
-  import cancelSound from './assets/SFX/cancel.mp3';
+  // import blipSound from './SFX/blip.mp3';
+  // import cancelSound from './SFX/cancel.mp3';
   
 
   // let showAlert = false
@@ -32,10 +32,10 @@
   let saveGameNotifier  = false
 
 
-  let cardSound = new Audio(blipSound);
-  let closeSound = new Audio(cancelSound);
-  // let cardSound
-  // let closeSound
+  // let cardSound = new Audio(blipSound);
+  // let closeSound = new Audio(cancelSound);
+  let cardSound
+  let closeSound
   
 
   // function newGame() {
@@ -77,8 +77,8 @@
   
 
  onMount(() => {
-    cardSound = new Audio('assets/SFX/blip.mp3')
-    closeSound = new Audio('assets/SFX/cancel.mp3')
+    cardSound = new Audio('./SFX/blip.mp3')
+    closeSound = new Audio('./SFX/cancel.mp3')
   })
   
 </script>

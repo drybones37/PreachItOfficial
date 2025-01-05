@@ -2,7 +2,7 @@
   "name": "preachitofficial",
   "version": "1.0.0",
   "description": "The Preach It! Board game brought to you on your computer",
-  "main": "./out/main/index.js",
+  "main": "./dist/main/index.js",
   "author": "JesusChristians.com",
   "homepage": "https://electron-vite.org",
   "scripts": {
@@ -37,9 +37,14 @@
     "vite": "^5.3.1"
   },
   "build": {
+  "directories": {
+    "output": "dist"
+  },
   "files": [
-    "src/**/*",
-    "src/renderer/src/assets/**/*"
+    "dist/main/**/*",
+    "dist/renderer/**/*",
+    "dist/preload/**/*",
+    "package.json"
   ]
 }
 

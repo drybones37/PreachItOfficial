@@ -10,11 +10,11 @@
   let tickingSound
 
   onMount(() => {
-    alarmSound = new Audio('/assets/SFX/timerOver.mp3')
-    tickingSound = new Audio('/assets/SFX/timerWarning7sec.mp3')
+    alarmSound = new Audio('./SFX/timerOver.mp3')
+    tickingSound = new Audio('./SFX/timerWarning7sec.mp3')
   
-    startButtonS = new Audio('/assets/SFX/start.mp3')
-    stopButtonS = new Audio('/assets/SFX/stop.mp3')
+    startButtonS = new Audio('./SFX/start.mp3')
+    stopButtonS = new Audio('./SFX/stop.mp3')
   })
 
   // Parse the time string and convert it to total seconds

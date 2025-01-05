@@ -5,76 +5,76 @@
   let addBoardSound
   let bagSound
   let closeSound
-  let bagImgs = '/assets/BagOfCharac.webp'
+  let bagImgs = './BagOfCharac.webp'
   let bagImgAlt = 'Bag of characters'
   let showAlert = false
   let selectionRow = [
     [
-      '/assets/Charac/AfricanBlue.webp',
-      '/assets/Charac/BruneteGreen.webp',
-      '/assets/Charac/ManSuitGreen.webp',
-      '/assets/Charac/AfricanWomanRed.webp',
-      '/assets/Charac/Brunette.webp',
-      '/assets/Charac/MonacleMan.webp',
-      '/assets/Charac/AfricanYellow.webp'
+      './Charac/AfricanBlue.webp',
+      './Charac/BruneteGreen.webp',
+      './Charac/ManSuitGreen.webp',
+      './Charac/AfricanWomanRed.webp',
+      './Charac/Brunette.webp',
+      './Charac/MonacleMan.webp',
+      './Charac/AfricanYellow.webp'
     ],
 
     [
-      '/assets/Charac/AfricanYellow.webp',
-      '/assets/Charac/BrunetteWomanRed.webp',
-      '/assets/Charac/MonocleBlack.webp',
-      '/assets/Charac/AsianGirlYellow.webp',
-      '/assets/Charac/Casandra.webp',
-      '/assets/Charac/MonocleYellow.webp'
+      './Charac/AfricanYellow.webp',
+      './Charac/BrunetteWomanRed.webp',
+      './Charac/MonocleBlack.webp',
+      './Charac/AsianGirlYellow.webp',
+      './Charac/Casandra.webp',
+      './Charac/MonocleYellow.webp'
     ],
 
     [
-      '/assets/Charac/AsianWoman.webp',
-      '/assets/Charac/DirtyBlondeGreen.webp',
-      '/assets/Charac/PinoyBlue.webp',
-      '/assets/Charac/BlondeManGreen.webp',
-      '/assets/Charac/EbonyBlue.webp',
-      '/assets/Charac/PinoyMan.webp'
+      './Charac/AsianWoman.webp',
+      './Charac/DirtyBlondeGreen.webp',
+      './Charac/PinoyBlue.webp',
+      './Charac/BlondeManGreen.webp',
+      './Charac/EbonyBlue.webp',
+      './Charac/PinoyMan.webp'
     ],
 
     [
-      '/assets/Charac/BlondeWomanRed.webp',
-      '/assets/Charac/EbonyWoman.webp',
-      '/assets/Charac/PinoyYellow.webp',
-      '/assets/Charac/BlondieBlue.webp',
-      '/assets/Charac/ManRed.webp',
-      '/assets/Charac/Rocker.webp'
+      './Charac/BlondeWomanRed.webp',
+      './Charac/EbonyWoman.webp',
+      './Charac/PinoyYellow.webp',
+      './Charac/BlondieBlue.webp',
+      './Charac/ManRed.webp',
+      './Charac/Rocker.webp'
     ]
   ]
 
   // let piecesList = [
-  //   'src/assets/Charac/AfricanBlue.webp',
-  //   'src/assets/Charac/BruneteGreen.webp',
-  //   'src/assets/Charac/ManSuitGreen.webp',
-  //   'src/assets/Charac/AfricanWomanRed.webp',
-  //   'src/assets/Charac/Brunette.webp',
-  //   'src/assets/Charac/MonacleMan.webp',
+  //   'src./Charac/AfricanBlue.webp',
+  //   'src./Charac/BruneteGreen.webp',
+  //   'src./Charac/ManSuitGreen.webp',
+  //   'src./Charac/AfricanWomanRed.webp',
+  //   'src./Charac/Brunette.webp',
+  //   'src./Charac/MonacleMan.webp',
 
-  //   'src/assets/Charac/AfricanYellow.webp',
-  //   'src/assets/Charac/BrunetteWomanRed.webp',
-  //   'src/assets/Charac/MonocleBlack.webp',
-  //   'src/assets/Charac/AsianGirlYellow.webp',
-  //   'src/assets/Charac/Casandra.webp',
-  //   'src/assets/Charac/MonocleYellow.webp',
+  //   'src./Charac/AfricanYellow.webp',
+  //   'src./Charac/BrunetteWomanRed.webp',
+  //   'src./Charac/MonocleBlack.webp',
+  //   'src./Charac/AsianGirlYellow.webp',
+  //   'src./Charac/Casandra.webp',
+  //   'src./Charac/MonocleYellow.webp',
 
-  //   'src/assets/Charac/AsianWoman.webp',
-  //   'src/assets/Charac/DirtyBlondeGreen.webp',
-  //   'src/assets/Charac/PinoyBlue.webp',
-  //   'src/assets/Charac/BlondeManGreen.webp',
-  //   'src/assets/Charac/EbonyBlue.webp',
-  //   'src/assets/Charac/PinoyMan.webp',
+  //   'src./Charac/AsianWoman.webp',
+  //   'src./Charac/DirtyBlondeGreen.webp',
+  //   'src./Charac/PinoyBlue.webp',
+  //   'src./Charac/BlondeManGreen.webp',
+  //   'src./Charac/EbonyBlue.webp',
+  //   'src./Charac/PinoyMan.webp',
 
-  //   'src/assets/Charac/BlondeWomanRed.webp',
-  //   'src/assets/Charac/EbonyWoman.webp',
-  //   'src/assets/Charac/PinoyYellow.webp',
-  //   'src/assets/Charac/BlondieBlue.webp',
-  //   'src/assets/Charac/ManRed.webp',
-  //   'src/assets/Charac/Rocker.webp'
+  //   'src./Charac/BlondeWomanRed.webp',
+  //   'src./Charac/EbonyWoman.webp',
+  //   'src./Charac/PinoyYellow.webp',
+  //   'src./Charac/BlondieBlue.webp',
+  //   'src./Charac/ManRed.webp',
+  //   'src./Charac/Rocker.webp'
   // ]
 
     function addToBoard(src) {
@@ -94,9 +94,9 @@
   }
   // Load the sound effect on mount
   onMount(() => {
-    addBoardSound = new Audio('/assets/SFX/piecePop.mp3')
-    bagSound = new Audio('/assets/SFX/charac-bag.mp3')
-    closeSound = new Audio('/assets/SFX/cancel.mp3')
+    addBoardSound = new Audio('./SFX/piecePop.mp3')
+    bagSound = new Audio('./SFX/charac-bag.mp3')
+    closeSound = new Audio('./SFX/cancel.mp3')
   })
 </script>
 
